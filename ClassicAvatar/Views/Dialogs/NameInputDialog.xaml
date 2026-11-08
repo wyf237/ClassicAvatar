@@ -1,0 +1,33 @@
+<v:VDialog x:Class="ClassicAvatar.NameInputDialog"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:v="clr-namespace:VControls.Controls;assembly=VControls"
+           DialogWidth="420"
+           ShowCancelButton="False"
+           ShowConfirmButton="False"
+           CloseOnScrimClick="False"
+           CloseOnEscape="True"
+           Padding="22"
+           Background="{DynamicResource VBrush.Surface}"
+           BorderBrush="{DynamicResource VBrush.BorderStrong}">
+    <StackPanel>
+        <TextBox x:Name="Input" Style="{StaticResource VTextBox}"
+                 Height="32" FontSize="12" MaxLength="40"
+                 Foreground="{DynamicResource VBrush.TextPrimary}"
+                 VerticalContentAlignment="Center"
+                 KeyDown="Input_KeyDown" />
+        <TextBlock x:Name="ErrorText"
+                   Text="{DynamicResource C2Loc.Name.Empty}"
+                   FontSize="10.5" Margin="2,6,0,0"
+                   Foreground="{DynamicResource VBrush.Danger}"
+                   Visibility="Collapsed" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,0">
+            <v:VButton Style="{StaticResource C2.Button.Ghost}" Height="30" Padding="14,0"
+                       Content="{DynamicResource VLoc.Common.Cancel}"
+                       Click="BtnCancel_Click" />
+            <v:VButton x:Name="BtnConfirm" Style="{StaticResource C2.Button.Primary}"
+                       Height="30" Padding="16,0" Margin="8,0,0,0"
+                       Click="BtnConfirm_Click" />
+        </StackPanel>
+    </StackPanel>
+</v:VDialog>

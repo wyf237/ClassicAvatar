@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Deterministic>true</Deterministic>
+    <Company>VControls</Company>
+    <Product>VControls</Product>
+    <Version>0.4.0</Version>
+  </PropertyGroup>
+</Project>

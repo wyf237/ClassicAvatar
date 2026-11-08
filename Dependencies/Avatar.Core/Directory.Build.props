@@ -1,0 +1,12 @@
+<Project>
+
+  <PropertyGroup>
+    <!--
+      与 WZReader 工程保持一致：关闭 Roslyn 共享编译服务器。
+      原因：共享编译进程可能长期持有 obj 目录下的 XML 文档文件句柄，
+      导致下一次构建写入同名文件时报 CS0016（Access denied）。
+    -->
+    <UseSharedCompilation>false</UseSharedCompilation>
+  </PropertyGroup>
+
+</Project>

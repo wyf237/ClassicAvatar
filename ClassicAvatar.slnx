@@ -1,0 +1,7 @@
+﻿<Solution>
+  <Project Path="Dependencies/Avatar.Core/Avatar.Core.csproj" />
+  <Project Path="Dependencies/VControls/VControls.csproj" />
+  <Project Path="Dependencies/WzReader/WzReader.Core/WzReader.Core.csproj" />
+  <Project Path="Dependencies/WzReader/WzReader.Export/WzReader.Export.csproj" />
+  <Project Path="ClassicAvatar/ClassicAvatar.csproj" />
+</Solution>

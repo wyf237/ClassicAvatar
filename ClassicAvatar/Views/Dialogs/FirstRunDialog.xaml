@@ -1,0 +1,57 @@
+<v:VDialog x:Class="ClassicAvatar.FirstRunDialog"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:v="clr-namespace:VControls.Controls;assembly=VControls"
+           Title="{DynamicResource C2Loc.FirstRun.Title}"
+           Message="{DynamicResource C2Loc.FirstRun.Message}"
+           DialogWidth="460"
+           ShowCancelButton="False"
+           ShowConfirmButton="False"
+           CloseOnScrimClick="False"
+           CloseOnEscape="True"
+           Padding="22"
+           Background="{DynamicResource VBrush.Surface}"
+           BorderBrush="{DynamicResource VBrush.BorderStrong}">
+    <StackPanel>
+        <TextBlock Text="{DynamicResource C2Loc.FirstRun.PathLabel}"
+                   FontSize="10.5" FontWeight="SemiBold" Margin="2,0,0,5"
+                   Foreground="{DynamicResource VBrush.TextSecondary}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <TextBox x:Name="PathText" Style="{StaticResource VTextBox}"
+                         Height="32" FontSize="11" IsReadOnly="True"
+                         Foreground="{DynamicResource VBrush.TextPrimary}"
+                         VerticalContentAlignment="Center" />
+                <TextBlock x:Name="PathHint"
+                           Text="{DynamicResource C2Loc.FirstRun.NotSelected}"
+                           Margin="10,0,0,0" FontSize="11"
+                           VerticalAlignment="Center" IsHitTestVisible="False"
+                           Foreground="{DynamicResource VBrush.TextMuted}" />
+            </Grid>
+            <v:VButton x:Name="BtnBrowse" Grid.Column="1"
+                       Style="{StaticResource C2.Button.Secondary}"
+                       Height="32" Padding="12,0" Margin="8,0,0,0"
+                       Content="{DynamicResource C2Loc.FirstRun.Browse}"
+                       Click="BtnBrowse_Click" />
+        </Grid>
+        <TextBlock x:Name="ErrorText"
+                   Text="{DynamicResource C2Loc.FirstRun.NoFolder}"
+                   FontSize="10.5" Margin="2,6,0,0"
+                   Foreground="{DynamicResource VBrush.Danger}"
+                   Visibility="Collapsed" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,0">
+            <v:VButton Style="{StaticResource C2.Button.Ghost}" Height="30" Padding="14,0"
+                       Content="{DynamicResource C2Loc.FirstRun.Later}"
+                       Click="BtnLater_Click" />
+            <v:VButton x:Name="BtnContinue" Style="{StaticResource C2.Button.Primary}"
+                       Height="30" Padding="16,0" Margin="8,0,0,0"
+                       Content="{DynamicResource C2Loc.FirstRun.Continue}"
+                       IsEnabled="False"
+                       Click="BtnContinue_Click" />
+        </StackPanel>
+    </StackPanel>
+</v:VDialog>

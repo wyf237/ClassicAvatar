@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Avatar.Core</RootNamespace>
+    <AssemblyName>Avatar.Core</AssemblyName>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      复用 WZReader 的包读取、DOM、链接解析与 PNG 编码能力。
+      两个工程位于同一级目录（D:\DEV\C#WPFPro），因此使用相对路径引用。
+    -->
+    <ProjectReference Include="..\WzReader\WzReader.Core\WzReader.Core.csproj" />
+    <ProjectReference Include="..\WzReader\WzReader.Export\WzReader.Export.csproj" />
+  </ItemGroup>
+
+</Project>
+

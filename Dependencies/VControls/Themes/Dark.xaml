@@ -1,0 +1,11 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Palettes/Dark.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <sys:String x:Key="VControls.ThemeName">Dark</sys:String>
+</ResourceDictionary>

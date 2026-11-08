@@ -1,0 +1,13 @@
+<Project>
+
+  <PropertyGroup>
+    <!--
+      关闭 Roslyn 共享编译服务器（VBCSCompiler）。
+      原因：共享编译进程在部分环境中会长期持有 obj 目录下的 XML 文档文件句柄，
+      导致下一次构建写入同名文件时报 CS0016（Access denied）。
+      关闭后每次编译使用独立进程，构建稳定，代价是单个工程编译略慢。
+    -->
+    <UseSharedCompilation>false</UseSharedCompilation>
+  </PropertyGroup>
+
+</Project>

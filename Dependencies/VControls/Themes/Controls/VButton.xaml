@@ -1,0 +1,114 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:VControls.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Shared/Typography.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Shared/Metrics.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Shared/Motion.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="{x:Type controls:VButton}">
+        <Setter Property="Width" Value="{DynamicResource VControl.Button.Width}" />
+        <Setter Property="Height" Value="{DynamicResource VControl.Button.Height}" />
+        <Setter Property="MinWidth" Value="{DynamicResource VControl.Button.MinWidth}" />
+        <Setter Property="MinHeight" Value="{DynamicResource VControl.Button.MinHeight}" />
+        <Setter Property="Padding" Value="{DynamicResource VControl.Button.Padding}" />
+        <Setter Property="FontFamily" Value="{DynamicResource VFont.Family}" />
+        <Setter Property="FontSize" Value="{DynamicResource VFont.Size.Button}" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{DynamicResource VBrush.Border}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource VRadius.Control}" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:VButton}">
+                    <Border x:Name="Root"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            SnapsToDevicePixels="True"
+                            UseLayoutRounding="True">
+                        <Grid>
+                            <Border x:Name="HoverLayer"
+                                    Background="{DynamicResource VBrush.HoverOverlay}"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    IsHitTestVisible="False"
+                                    Opacity="0"
+                                    SnapsToDevicePixels="True" />
+                            <Border x:Name="PressedLayer"
+                                    Background="{DynamicResource VBrush.PressedOverlay}"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    IsHitTestVisible="False"
+                                    Opacity="0"
+                                    SnapsToDevicePixels="True" />
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              RecognizesAccessKey="True" />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Tag" Value="Primary">
+                            <Setter TargetName="HoverLayer" Property="Background" Value="{DynamicResource VBrush.OnPrimary}" />
+                            <Setter TargetName="PressedLayer" Property="Background" Value="{DynamicResource VBrush.OnPrimary}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="HoverLayer" Property="Opacity" Value="0.055" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="PressedLayer" Property="Opacity" Value="0.10" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="Root" Property="BorderBrush" Value="{DynamicResource VBrush.FocusRing}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Root" Property="Opacity" Value="{StaticResource VControl.DisabledOpacity}" />
+                            <Setter Property="Cursor" Value="Arrow" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="Variant" Value="Primary">
+                <Setter Property="Background" Value="{DynamicResource VBrush.Primary}" />
+                <Setter Property="Foreground" Value="{DynamicResource VBrush.OnPrimary}" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Tag" Value="Primary" />
+            </Trigger>
+            <Trigger Property="Variant" Value="Secondary">
+                <Setter Property="Background" Value="{DynamicResource VBrush.Surface}" />
+                <Setter Property="Foreground" Value="{DynamicResource VBrush.TextPrimary}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource VBrush.Border}" />
+                <Setter Property="Tag" Value="{x:Null}" />
+            </Trigger>
+            <Trigger Property="Variant" Value="Danger">
+                <Setter Property="Background" Value="{DynamicResource VBrush.Danger}" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Tag" Value="Primary" />
+            </Trigger>
+            <Trigger Property="Variant" Value="Ghost">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="{DynamicResource VBrush.TextSecondary}" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Tag" Value="{x:Null}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

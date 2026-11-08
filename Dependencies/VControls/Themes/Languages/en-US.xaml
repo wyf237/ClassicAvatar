@@ -1,0 +1,219 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <sys:String x:Key="VControls.LanguageName">en-US</sys:String>
+
+    <!-- App / Brand -->
+    <sys:String x:Key="VLoc.AppName">CLASSIC AVATAR</sys:String>
+    <sys:String x:Key="VLoc.AppVersion">V2.1</sys:String>
+
+    <!-- Top menu -->
+    <sys:String x:Key="VLoc.Menu.File">File</sys:String>
+    <sys:String x:Key="VLoc.Menu.Edit">Edit</sys:String>
+    <sys:String x:Key="VLoc.Menu.View">View</sys:String>
+    <sys:String x:Key="VLoc.Menu.Help">Help</sys:String>
+
+    <sys:String x:Key="VLoc.Menu.NewWindow">New Window</sys:String>
+    <sys:String x:Key="VLoc.Menu.Open">Open Combo</sys:String>
+    <sys:String x:Key="VLoc.Menu.Save">Save</sys:String>
+    <sys:String x:Key="VLoc.Menu.SaveAs">Save As</sys:String>
+    <sys:String x:Key="VLoc.Menu.ExportPng">Export PNG</sys:String>
+    <sys:String x:Key="VLoc.Menu.Exit">Exit</sys:String>
+    <sys:String x:Key="VLoc.Menu.Undo">Undo</sys:String>
+    <sys:String x:Key="VLoc.Menu.Redo">Redo</sys:String>
+    <sys:String x:Key="VLoc.Menu.ResetAppearance">Reset Appearance</sys:String>
+    <sys:String x:Key="VLoc.Menu.ToggleBackground">Show/Hide Background</sys:String>
+    <sys:String x:Key="VLoc.Menu.ToggleShadow">Show/Hide Ground Shadow</sys:String>
+    <sys:String x:Key="VLoc.Menu.ResetView">Reset View</sys:String>
+    <sys:String x:Key="VLoc.Menu.Usage">How to Use</sys:String>
+    <sys:String x:Key="VLoc.Menu.BackgroundImg">Background Images</sys:String>
+    <sys:String x:Key="VLoc.Menu.Shortcuts">Shortcuts</sys:String>
+    <sys:String x:Key="VLoc.Menu.About">About Author / Version</sys:String>
+
+    <!-- Rail -->
+    <sys:String x:Key="VLoc.Rail.Character">Character</sys:String>
+    <sys:String x:Key="VLoc.Rail.Equipment">Equipment</sys:String>
+    <sys:String x:Key="VLoc.Rail.Library">Library</sys:String>
+    <sys:String x:Key="VLoc.Rail.Settings">Settings</sys:String>
+
+    <!-- Window buttons -->
+    <sys:String x:Key="VLoc.Window.Pin">Pin</sys:String>
+    <sys:String x:Key="VLoc.Window.Unpin">Unpin</sys:String>
+    <sys:String x:Key="VLoc.Window.Minimize">Minimize</sys:String>
+    <sys:String x:Key="VLoc.Window.Close">Close</sys:String>
+
+    <!-- Action buttons -->
+    <sys:String x:Key="VLoc.Action.Save">Save</sys:String>
+    <sys:String x:Key="VLoc.Action.Export">Export</sys:String>
+
+    <!-- Inspector -->
+    <sys:String x:Key="VLoc.Inspector.Title">Character</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Reset">Reset</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Gender">Gender</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Skin">Skin</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Hair">Hair</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Face">Face</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Male">Male</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Female">Female</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Change">Change</sys:String>
+    <sys:String x:Key="VLoc.Inspector.HelpHint">The bottom toolbar controls actions and zoom.</sys:String>
+    <sys:String x:Key="VLoc.Inspector.LocalNote">Local save · not uploaded</sys:String>
+
+    <!-- Equipment -->
+    <sys:String x:Key="VLoc.Equip.Title">Equipment</sys:String>
+    <sys:String x:Key="VLoc.Equip.Close">Close</sys:String>
+    <sys:String x:Key="VLoc.Equip.SearchPlaceholder">Search equipment…</sys:String>
+    <sys:String x:Key="VLoc.Equip.Normal">Normal</sys:String>
+    <sys:String x:Key="VLoc.Equip.Cash">Cash</sys:String>
+    <sys:String x:Key="VLoc.Equip.Filter.All">All</sys:String>
+    <sys:String x:Key="VLoc.Equip.Filter.Favorites">Favorites</sys:String>
+    <sys:String x:Key="VLoc.Equip.Filter.Recent">Recent</sys:String>
+    <sys:String x:Key="VLoc.Equip.Filter.Equipped">Equipped</sys:String>
+    <sys:String x:Key="VLoc.Equip.Remove">Remove</sys:String>
+    <sys:String x:Key="VLoc.Equip.TryOnHint">Click to try on, double-click to equip</sys:String>
+
+    <!-- Stage -->
+    <sys:String x:Key="VLoc.Stage.Play">Play</sys:String>
+    <sys:String x:Key="VLoc.Stage.Action">Action</sys:String>
+    <sys:String x:Key="VLoc.Stage.Zoom">Zoom</sys:String>
+    <sys:String x:Key="VLoc.Stage.Fit">Fit</sys:String>
+        <sys:String x:Key="VLoc.Stage.CopiedFrame">Current frame copied</sys:String>
+<sys:String x:Key="VLoc.Stage.Screenshot">Screenshot</sys:String>
+    <sys:String x:Key="VLoc.Stage.Background">Background</sys:String>
+    <sys:String x:Key="VLoc.Stage.NoBackground">None</sys:String>
+
+    <!-- Library -->
+    <sys:String x:Key="VLoc.Library.Title">Library</sys:String>
+    <sys:String x:Key="VLoc.Library.Import">Import</sys:String>
+    <sys:String x:Key="VLoc.Library.New">New</sys:String>
+    <sys:String x:Key="VLoc.Library.EmptyTitle">No saved combos yet</sys:String>
+    <sys:String x:Key="VLoc.Library.EmptyBody">Create a character first, then press Ctrl+S to save. You can also import a .avatar file to keep editing.</sys:String>
+    <sys:String x:Key="VLoc.Library.NewCombo">New Combo</sys:String>
+    <sys:String x:Key="VLoc.Library.ImportFile">Import File</sys:String>
+        <sys:String x:Key="VLoc.Library.CountSuffix">combos · local</sys:String>
+<sys:String x:Key="VLoc.Library.LocalNote">Local save · never uploaded</sys:String>
+
+    <!-- Background picker -->
+    <sys:String x:Key="VLoc.Background.Title">Background</sys:String>
+    <sys:String x:Key="VLoc.Background.OpenFolder">Open Background Folder</sys:String>
+    <sys:String x:Key="VLoc.Background.ScaleWithChar">Scale with character</sys:String>
+
+    <!-- Help -->
+    <sys:String x:Key="VLoc.Help.Title">Help</sys:String>
+    <sys:String x:Key="VLoc.Help.Subtitle">Local offline tool</sys:String>
+    <sys:String x:Key="VLoc.Help.UsageTitle">How to Use</sys:String>
+    <sys:String x:Key="VLoc.Help.UsageStep1">1. Select the game Data directory (first time only).</sys:String>
+    <sys:String x:Key="VLoc.Help.UsageStep2">2. Create or open a combo, then choose Character / Equipment on the left.</sys:String>
+    <sys:String x:Key="VLoc.Help.UsageStep3">3. In the equipment panel, click to try on, double-click to equip; the bottom toolbar controls playback and zoom.</sys:String>
+    <sys:String x:Key="VLoc.Help.UsageStep4">4. Press Ctrl+S to save locally; use Export to generate images.</sys:String>
+    <sys:String x:Key="VLoc.Help.BackgroundTitle">Background Images</sys:String>
+    <sys:String x:Key="VLoc.Help.BackgroundDesc">Put PNG/JPG files into the Backgrounds folder next to the exe; click "Background" at the top-right of the stage to choose. Background and character share the same scene layer and scale together.</sys:String>
+    <sys:String x:Key="VLoc.Help.AboutTitle">About</sys:String>
+
+    <!-- Status bar -->
+    <sys:String x:Key="VLoc.Status.LocalMode">Local Mode</sys:String>
+    <sys:String x:Key="VLoc.Status.NotConnected">Not connected</sys:String>
+    <sys:String x:Key="VLoc.Status.Connected">Connected</sys:String>
+
+    <!-- Common -->
+        <sys:String x:Key="VLoc.Dialog.UnsavedTitle">Unsaved outfit</sys:String>
+    <sys:String x:Key="VLoc.Dialog.UnsavedBody">This outfit has unsaved changes. Save before closing?</sys:String>
+<sys:String x:Key="VLoc.Common.Cancel">Cancel</sys:String>
+    <sys:String x:Key="VLoc.Common.Confirm">OK</sys:String>
+    <sys:String x:Key="VLoc.Common.Items">items</sys:String>
+
+    <!-- Settings -->
+        <sys:String x:Key="VLoc.Settings.Skin">Skin</sys:String>
+<sys:String x:Key="VLoc.Settings.Theme">Theme</sys:String>
+        <sys:String x:Key="VLoc.Theme.Glacier">Glacier</sys:String>
+    <sys:String x:Key="VLoc.Theme.Midnight">Midnight</sys:String>
+    <sys:String x:Key="VLoc.Theme.GlacierDesc">Glacier blue</sys:String>
+    <sys:String x:Key="VLoc.Theme.MidnightDesc">Midnight gold</sys:String>
+<sys:String x:Key="VLoc.Settings.Light">Light</sys:String>
+    <sys:String x:Key="VLoc.Settings.Dark">Dark</sys:String>
+    <sys:String x:Key="VLoc.Settings.Language">Language</sys:String>
+    <sys:String x:Key="VLoc.Settings.Title">Settings</sys:String>
+    <sys:String x:Key="VLoc.Settings.Cache">Cache</sys:String>
+        <sys:String x:Key="VLoc.Settings.MoreThemes">More themes (soon)</sys:String>
+<sys:String x:Key="VLoc.Settings.ClearCache">Clear icon cache</sys:String>
+
+    <!-- Additional keys -->
+    <sys:String x:Key="VLoc.Doc.Untitled">Untitled Combo</sys:String>
+    <sys:String x:Key="VLoc.Menu.ExportFrames">Export Frames</sys:String>
+    <sys:String x:Key="VLoc.Menu.ExportAvatar">Export .avatar</sys:String>
+    <sys:String x:Key="VLoc.Menu.ClearIconCache">Clear Icon Cache</sys:String>
+    <sys:String x:Key="VLoc.Menu.ZoomIn">Zoom In</sys:String>
+    <sys:String x:Key="VLoc.Menu.ZoomOut">Zoom Out</sys:String>
+    <sys:String x:Key="VLoc.Stage.ZoomIn">Zoom in</sys:String>
+    <sys:String x:Key="VLoc.Stage.ZoomOut">Zoom out</sys:String>
+    <sys:String x:Key="VLoc.Equip.Equipped">Equipped</sys:String>
+    <sys:String x:Key="VLoc.Equip.NoSelection">No item selected</sys:String>
+    <sys:String x:Key="VLoc.Equip.CopyId">Copy ID</sys:String>
+    <sys:String x:Key="VLoc.Equip.CopyName">Copy Name</sys:String>
+    <sys:String x:Key="VLoc.Equip.CopyImage">Copy Image</sys:String>
+    <sys:String x:Key="VLoc.Equip.Favorite">Add to Favorites</sys:String>
+    <sys:String x:Key="VLoc.Equip.SaveLocal">Save Icon Locally</sys:String>
+    <sys:String x:Key="VLoc.Common.Loading">Loading</sys:String>
+    <sys:String x:Key="VLoc.Skin.0">Porcelain 01</sys:String>
+    <sys:String x:Key="VLoc.Skin.1">Warm 02</sys:String>
+    <sys:String x:Key="VLoc.Skin.2">Natural 03</sys:String>
+    <sys:String x:Key="VLoc.Skin.3">Wheat 04</sys:String>
+    <sys:String x:Key="VLoc.Skin.4">Honey 05</sys:String>
+    <sys:String x:Key="VLoc.Skin.5">Bronze 06</sys:String>
+    <sys:String x:Key="VLoc.Skin.6">Deep Brown 07</sys:String>
+    <sys:String x:Key="VLoc.HairDye.0">None</sys:String>
+    <sys:String x:Key="VLoc.HairDye.1">Black</sys:String>
+    <sys:String x:Key="VLoc.HairDye.2">Dark Brown</sys:String>
+    <sys:String x:Key="VLoc.HairDye.3">Flaxen</sys:String>
+    <sys:String x:Key="VLoc.HairDye.4">Red</sys:String>
+    <sys:String x:Key="VLoc.HairDye.5">Blue</sys:String>
+    <sys:String x:Key="VLoc.HairDye.6">Green</sys:String>
+    <sys:String x:Key="VLoc.HairDye.7">Purple</sys:String>
+    <sys:String x:Key="VLoc.HairDye.8">Silver</sys:String>
+    <sys:String x:Key="VLoc.HairDye.9">Light Brown</sys:String>
+    <sys:String x:Key="VLoc.HairDye.10">Pink</sys:String>
+    <sys:String x:Key="VLoc.Inspector.HairDye">Hair Color</sys:String>
+    <sys:String x:Key="VLoc.Help.ShortcutTitle">Shortcuts</sys:String>
+    <sys:String x:Key="VLoc.Help.ShortcutBody">Ctrl+S Save · Ctrl+Z Undo · Ctrl+Y Redo · Ctrl+O Open · Ctrl+E Export PNG · Esc Close overlays</sys:String>
+    <sys:String x:Key="VLoc.Help.AboutBody">Classic Avatar V2.1 · Local offline pixel avatar compositor. All data comes from your local MapleStory Data folder and is never uploaded.</sys:String>
+    <sys:String x:Key="VLoc.Menu.OpenData">Open Data Folder</sys:String>
+    <sys:String x:Key="VLoc.Menu.ExportGif">Export GIF</sys:String>
+    <sys:String x:Key="VLoc.Menu.ExportText">Export Outfit Text</sys:String>
+    <sys:String x:Key="VLoc.NoData.Title">Game data not connected</sys:String>
+    <sys:String x:Key="VLoc.NoData.Desc">Choose the Data folder inside your MapleStory installation. You only need to do this once.</sys:String>
+    <sys:String x:Key="VLoc.NoData.Button">Choose Data Folder</sys:String>
+    <sys:String x:Key="VLoc.Equip.CashFilter">Filter</sys:String>
+    <sys:String x:Key="VLoc.Equip.Subtitle">Browse and try on items</sys:String>
+    <sys:String x:Key="VLoc.Export.Title">Export</sys:String>
+    <sys:String x:Key="VLoc.Export.Subtitle">Choose a format to save the avatar or its data</sys:String>
+    <sys:String x:Key="VLoc.Export.Frame">Frame image</sys:String>
+    <sys:String x:Key="VLoc.Export.FrameDesc">Current frame with an equipment list</sys:String>
+    <sys:String x:Key="VLoc.Export.Gif">Animated GIF</sys:String>
+    <sys:String x:Key="VLoc.Export.GifDesc">Loop of the current action</sys:String>
+    <sys:String x:Key="VLoc.Export.Text">Outfit text</sys:String>
+    <sys:String x:Key="VLoc.Export.TextDesc">Equipment names and IDs</sys:String>
+    <sys:String x:Key="VLoc.Export.Avatar">Avatar file</sys:String>
+    <sys:String x:Key="VLoc.Export.AvatarDesc">Editable .avatar package</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Subtitle">Appearance</sys:String>
+    <sys:String x:Key="VLoc.Library.Open">Open</sys:String>
+    <sys:String x:Key="VLoc.Menu.BackgroundHelp">Backgrounds</sys:String>
+    <sys:String x:Key="VLoc.Menu.Compare">Compare</sys:String>
+    <sys:String x:Key="VLoc.Menu.Recent">Recent</sys:String>
+    <sys:String x:Key="VLoc.Outfit.Title">My outfits</sys:String>
+    <sys:String x:Key="VLoc.Outfit.AutoSave">Autosaved</sys:String>
+    <sys:String x:Key="VLoc.Outfit.All">All outfits</sys:String>
+    <sys:String x:Key="VLoc.Outfit.New">New outfit</sys:String>
+    <sys:String x:Key="VLoc.Outfit.Collapse">Collapse</sys:String>
+    <sys:String x:Key="VLoc.Rail.DataSource">Data</sys:String>
+    <sys:String x:Key="VLoc.Rail.Export">Export</sys:String>
+    <sys:String x:Key="VLoc.Settings.Subtitle">Preferences and local data</sys:String>
+    <sys:String x:Key="VLoc.Settings.CacheDesc">Clear cached item icons</sys:String>
+    <sys:String x:Key="VLoc.Status.Saved">Saved</sys:String>
+    <sys:String x:Key="VLoc.Window.Maximize">Maximize</sys:String>
+    <sys:String x:Key="VLoc.Status.Unsaved">Unsaved</sys:String>
+    <sys:String x:Key="VLoc.Status.UnsavedShort">Unsaved</sys:String>
+    <sys:String x:Key="VLoc.Menu.Export">Export</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Random">Randomize</sys:String>
+</ResourceDictionary>

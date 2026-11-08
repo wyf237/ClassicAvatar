@@ -1,0 +1,347 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+    xmlns:controls="clr-namespace:VControls.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Shared/Typography.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Shared/Metrics.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Shared/Motion.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <ItemsPanelTemplate x:Key="VVirtualList.Panel.Vertical">
+        <VirtualizingStackPanel Orientation="Vertical"
+                                VirtualizingPanel.IsVirtualizing="True"
+                                VirtualizingPanel.VirtualizationMode="Recycling"
+                                VirtualizingPanel.ScrollUnit="Pixel" />
+    </ItemsPanelTemplate>
+
+    <ItemsPanelTemplate x:Key="VVirtualList.Panel.Horizontal">
+        <VirtualizingStackPanel Orientation="Horizontal"
+                                VirtualizingPanel.IsVirtualizing="True"
+                                VirtualizingPanel.VirtualizationMode="Recycling"
+                                VirtualizingPanel.ScrollUnit="Pixel" />
+    </ItemsPanelTemplate>
+
+    <ItemsPanelTemplate x:Key="VVirtualList.Panel.Grid">
+        <controls:VVirtualGridPanel />
+    </ItemsPanelTemplate>
+
+    <!-- Slim scrollbar: 8px invisible hit/track area, 2px thumb at rest,
+         8px thumb on hover, no arrows and no track fill. The thumb is laid out
+         by VScrollThumb so both rounded ends remain visible at the extremes. -->
+    <Style TargetType="{x:Type controls:VScrollThumb}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:VScrollThumb}">
+                    <Border x:Name="ThumbBd"
+                            Background="{Binding ScrollBarThumbBrush, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}"
+                            CornerRadius="4"
+                            Opacity="0.62"
+                            SnapsToDevicePixels="True" />
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType={x:Type ScrollBar}}}"
+                                     Value="True">
+                            <Setter TargetName="ThumbBd" Property="Opacity" Value="1" />
+                            <Setter TargetName="ThumbBd"
+                                    Property="Background"
+                                    Value="{Binding ScrollBarThumbHoverBrush, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsDragging, RelativeSource={RelativeSource Self}}"
+                                     Value="True">
+                            <Setter TargetName="ThumbBd" Property="Opacity" Value="1" />
+                            <Setter TargetName="ThumbBd"
+                                    Property="Background"
+                                    Value="{Binding ScrollBarThumbHoverBrush, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="VVirtualScrollBar" TargetType="{x:Type ScrollBar}">
+        <Setter Property="Width" Value="8" />
+        <Setter Property="MaxWidth" Value="8" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                    <Canvas Background="Transparent"
+                            ClipToBounds="True"
+                            SnapsToDevicePixels="True">
+                        <controls:VScrollThumb x:Name="Thumb" />
+                    </Canvas>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Orientation" Value="Horizontal">
+                            <Setter Property="Width" Value="Auto" />
+                            <Setter Property="Height" Value="8" />
+                            <Setter Property="MaxWidth" Value="{x:Static sys:Double.PositiveInfinity}" />
+                            <Setter Property="MaxHeight" Value="8" />
+                        </Trigger>
+                        <Trigger Property="Orientation" Value="Vertical">
+                            <Setter Property="Width" Value="8" />
+                            <Setter Property="Height" Value="Auto" />
+                            <Setter Property="MaxWidth" Value="8" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- Shared item chrome. -->
+    <ControlTemplate x:Key="VVirtualListItem.RowTemplate" TargetType="{x:Type controls:VVirtualListItem}">
+        <Border x:Name="Bd"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="{Binding ItemCornerRadius, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}"
+                SnapsToDevicePixels="True">
+            <Grid Margin="{Binding ItemPadding, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <ContentPresenter x:Name="IconHost"
+                                  Width="{Binding IconSize, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}"
+                                  Height="{Binding IconSize, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}"
+                                  Margin="0,0,10,0"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Center"
+                                  Content="{TemplateBinding Icon}"
+                                  ContentTemplate="{TemplateBinding IconTemplate}" />
+
+                <ContentPresenter Grid.Column="1"
+                                  x:Name="ContentHost"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  ContentSource="Content"
+                                  RecognizesAccessKey="True" />
+
+                <ContentPresenter Grid.Column="2"
+                                  x:Name="TrailingHost"
+                                  Margin="10,0,0,0"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Center"
+                                  Content="{TemplateBinding TrailingContent}"
+                                  ContentTemplate="{TemplateBinding TrailingContentTemplate}" />
+            </Grid>
+        </Border>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter TargetName="IconHost" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="TrailingContent" Value="{x:Null}">
+                <Setter TargetName="TrailingHost" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Bd"
+                        Property="Background"
+                        Value="{Binding ItemHoverBackground, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter TargetName="Bd"
+                        Property="Background"
+                        Value="{Binding ItemSelectedBackground, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}" />
+                <Setter TargetName="Bd"
+                        Property="BorderBrush"
+                        Value="{Binding ItemSelectedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}" />
+            </Trigger>
+            <DataTrigger Binding="{Binding ShowSelectionBorder, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}"
+                         Value="False">
+                <Setter TargetName="Bd"
+                        Property="BorderBrush"
+                        Value="{Binding ItemBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}" />
+            </DataTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="Bd" Property="Opacity" Value="0.45" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="VVirtualListItem.CardTemplate" TargetType="{x:Type controls:VVirtualListItem}">
+        <Border x:Name="Bd"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="{Binding ItemCornerRadius, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}"
+                SnapsToDevicePixels="True">
+            <Grid Margin="{Binding ItemPadding, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <ContentPresenter x:Name="IconHost"
+                                  Width="{Binding IconSize, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}"
+                                  Height="{Binding IconSize, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Top"
+                                  Content="{TemplateBinding Icon}"
+                                  ContentTemplate="{TemplateBinding IconTemplate}" />
+
+                <ContentPresenter Grid.Row="1"
+                                  x:Name="ContentHost"
+                                  Margin="0,10,0,0"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  ContentSource="Content"
+                                  RecognizesAccessKey="True" />
+
+                <ContentPresenter Grid.Row="2"
+                                  x:Name="TrailingHost"
+                                  Margin="0,10,0,0"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Bottom"
+                                  Content="{TemplateBinding TrailingContent}"
+                                  ContentTemplate="{TemplateBinding TrailingContentTemplate}" />
+            </Grid>
+        </Border>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter TargetName="IconHost" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="TrailingContent" Value="{x:Null}">
+                <Setter TargetName="TrailingHost" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Bd"
+                        Property="Background"
+                        Value="{Binding ItemHoverBackground, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter TargetName="Bd"
+                        Property="Background"
+                        Value="{Binding ItemSelectedBackground, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}" />
+                <Setter TargetName="Bd"
+                        Property="BorderBrush"
+                        Value="{Binding ItemSelectedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}" />
+            </Trigger>
+            <DataTrigger Binding="{Binding ShowSelectionBorder, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}"
+                         Value="False">
+                <Setter TargetName="Bd"
+                        Property="BorderBrush"
+                        Value="{Binding ItemBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}" />
+            </DataTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="Bd" Property="Opacity" Value="0.45" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type controls:VVirtualListItem}">
+        <Setter Property="Background" Value="{Binding ItemBackground, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}" />
+        <Setter Property="Foreground" Value="{Binding ItemForeground, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}" />
+        <Setter Property="BorderBrush" Value="{Binding ItemBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}" />
+        <Setter Property="FontFamily" Value="{DynamicResource VFont.Family}" />
+        <Setter Property="FontSize" Value="{DynamicResource VFont.Size.Body}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="Icon" Value="{Binding Icon}" />
+        <Setter Property="IconTemplate" Value="{Binding IconTemplate}" />
+        <Setter Property="TrailingContent" Value="{Binding TrailingContent}" />
+        <Setter Property="TrailingContentTemplate" Value="{Binding TrailingContentTemplate}" />
+        <Setter Property="Template" Value="{StaticResource VVirtualListItem.RowTemplate}" />
+    </Style>
+
+    <Style x:Key="VVirtualListItem.Vertical"
+           TargetType="{x:Type controls:VVirtualListItem}"
+           BasedOn="{StaticResource {x:Type controls:VVirtualListItem}}">
+        <Setter Property="Height" Value="{Binding ItemHeight, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}" />
+    </Style>
+
+    <Style x:Key="VVirtualListItem.Horizontal"
+           TargetType="{x:Type controls:VVirtualListItem}"
+           BasedOn="{StaticResource {x:Type controls:VVirtualListItem}}">
+        <Setter Property="Width" Value="{Binding ItemWidth, RelativeSource={RelativeSource AncestorType={x:Type controls:VVirtualList}}}" />
+        <Setter Property="Height"
+                Value="{Binding ViewportHeight, RelativeSource={RelativeSource AncestorType={x:Type ScrollViewer}}, FallbackValue=240}" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Template" Value="{StaticResource VVirtualListItem.CardTemplate}" />
+    </Style>
+
+    <Style x:Key="VVirtualListItem.Grid"
+           TargetType="{x:Type controls:VVirtualListItem}"
+           BasedOn="{StaticResource {x:Type controls:VVirtualListItem}}">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Template" Value="{StaticResource VVirtualListItem.CardTemplate}" />
+    </Style>
+
+    <Style TargetType="{x:Type controls:VVirtualList}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{DynamicResource VBrush.CardBorder}" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="MinWidth" Value="320" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="FontFamily" Value="{DynamicResource VFont.Family}" />
+        <Setter Property="FontSize" Value="{DynamicResource VFont.Size.Body}" />
+        <Setter Property="Foreground" Value="{DynamicResource VBrush.TextPrimary}" />
+        <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="IsTextSearchEnabled" Value="False" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
+        <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling" />
+        <Setter Property="ItemBackground" Value="{DynamicResource VBrush.Surface}" />
+        <Setter Property="ItemBorderBrush" Value="{DynamicResource VBrush.CardBorder}" />
+        <Setter Property="ItemHoverBackground" Value="{DynamicResource VBrush.SurfaceMuted}" />
+        <Setter Property="ItemSelectedBackground" Value="{DynamicResource VBrush.AccentSubtle}" />
+        <Setter Property="ItemSelectedBorderBrush" Value="{DynamicResource VBrush.AccentBorder}" />
+        <Setter Property="ItemForeground" Value="{DynamicResource VBrush.TextPrimary}" />
+        <Setter Property="ScrollBarThumbBrush" Value="{DynamicResource VBrush.TextMuted}" />
+        <Setter Property="ScrollBarThumbHoverBrush" Value="{DynamicResource VBrush.TextSecondary}" />
+        <Setter Property="ItemsPanel" Value="{StaticResource VVirtualList.Panel.Vertical}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:VVirtualList}">
+                    <Border x:Name="ListBorder"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}}"
+                            Padding="{TemplateBinding Padding}"
+                            SnapsToDevicePixels="True">
+                        <ScrollViewer x:Name="PART_ScrollViewer"
+                                      Focusable="False"
+                                      CanContentScroll="True"
+                                      HorizontalScrollBarVisibility="Auto"
+                                      VerticalScrollBarVisibility="Auto"
+                                      PanningMode="Both">
+                            <ScrollViewer.Resources>
+                                <Style TargetType="{x:Type ScrollBar}"
+                                       BasedOn="{StaticResource VVirtualScrollBar}" />
+                            </ScrollViewer.Resources>
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
+
+

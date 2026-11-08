@@ -1,0 +1,271 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:VControls.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Shared/Typography.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Shared/Metrics.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="{x:Type controls:VSliderThumb}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:VSliderThumb}">
+                    <Border Background="Transparent" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="1.08" ScaleY="1.08" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsDragging" Value="True">
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="1.14" ScaleY="1.14" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="VSliderPageButton" TargetType="{x:Type RepeatButton}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Background="Transparent" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="VSlider.HorizontalTemplate" TargetType="{x:Type controls:VSlider}">
+        <Grid x:Name="Root" Background="Transparent" MinHeight="24">
+            <controls:VSliderTrack Minimum="{TemplateBinding Minimum}"
+                                   Maximum="{TemplateBinding Maximum}"
+                                   Value="{TemplateBinding Value}"
+                                   Orientation="Horizontal"
+                                   TrackBrush="{TemplateBinding TrackBrush}"
+                                   ActiveTrackBrush="{TemplateBinding ActiveTrackBrush}"
+                                   TrackThickness="{TemplateBinding TrackThickness}"
+                                   ThumbSize="{TemplateBinding ThumbSize}"
+                                   Height="{TemplateBinding ThumbSize}"
+                                   VerticalAlignment="Center"
+                                   IsHitTestVisible="False" />
+
+            <controls:VSliderTickBar x:Name="Ticks"
+                                     Minimum="{TemplateBinding Minimum}"
+                                     Maximum="{TemplateBinding Maximum}"
+                                     Step="{TemplateBinding Step}"
+                                     Orientation="Horizontal"
+                                     TickBrush="{TemplateBinding TickBrush}"
+                                     ThumbSize="{TemplateBinding ThumbSize}"
+                                     Height="{TemplateBinding ThumbSize}"
+                                     VerticalAlignment="Center"
+                                     Visibility="Visible"
+                                     IsHitTestVisible="False" />
+
+            <Track x:Name="PART_Track"
+                   Orientation="Horizontal"
+                   IsDirectionReversed="False"
+                   Focusable="False">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource VSliderPageButton}"
+                                  Command="{x:Static Slider.DecreaseLarge}"
+                                  CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}" />
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <controls:VSliderThumb Width="{TemplateBinding ThumbSize}"
+                                           Height="{TemplateBinding ThumbSize}"
+                                           Shape="{TemplateBinding ThumbShape}"
+                                           Fill="{TemplateBinding ThumbFill}"
+                                           Stroke="{TemplateBinding ThumbStroke}"
+                                           StrokeThickness="{TemplateBinding ThumbStrokeThickness}"
+                                           CornerRadius="{TemplateBinding ThumbCornerRadius}" />
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource VSliderPageButton}"
+                                  Command="{x:Static Slider.IncreaseLarge}"
+                                  CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+
+            <Border x:Name="FocusRing"
+                    Margin="-4"
+                    BorderBrush="{DynamicResource VBrush.FocusRing}"
+                    BorderThickness="2"
+                    CornerRadius="6"
+                    Opacity="0"
+                    IsHitTestVisible="False" />
+        </Grid>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="ShowTicks" Value="False">
+                <Setter TargetName="Ticks" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                <Setter TargetName="FocusRing" Property="Opacity" Value="0.55" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="Root" Property="Opacity" Value="{StaticResource VControl.DisabledOpacity}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="VSlider.VerticalTemplate" TargetType="{x:Type controls:VSlider}">
+        <Grid x:Name="Root" Background="Transparent" MinWidth="24">
+            <controls:VSliderTrack Minimum="{TemplateBinding Minimum}"
+                                   Maximum="{TemplateBinding Maximum}"
+                                   Value="{TemplateBinding Value}"
+                                   Orientation="Vertical"
+                                   TrackBrush="{TemplateBinding TrackBrush}"
+                                   ActiveTrackBrush="{TemplateBinding ActiveTrackBrush}"
+                                   TrackThickness="{TemplateBinding TrackThickness}"
+                                   ThumbSize="{TemplateBinding ThumbSize}"
+                                   Width="{TemplateBinding ThumbSize}"
+                                   HorizontalAlignment="Center"
+                                   IsHitTestVisible="False" />
+
+            <controls:VSliderTickBar x:Name="Ticks"
+                                     Minimum="{TemplateBinding Minimum}"
+                                     Maximum="{TemplateBinding Maximum}"
+                                     Step="{TemplateBinding Step}"
+                                     Orientation="Vertical"
+                                     TickBrush="{TemplateBinding TickBrush}"
+                                     ThumbSize="{TemplateBinding ThumbSize}"
+                                     Width="{TemplateBinding ThumbSize}"
+                                     HorizontalAlignment="Center"
+                                     Visibility="Visible"
+                                     IsHitTestVisible="False" />
+
+            <Track x:Name="PART_Track"
+                   Orientation="Vertical"
+                   IsDirectionReversed="False"
+                   Focusable="False"
+                   HorizontalAlignment="Center"
+                   Width="{TemplateBinding ThumbSize}">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource VSliderPageButton}"
+                                  Command="{x:Static Slider.DecreaseLarge}"
+                                  CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}" />
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <controls:VSliderThumb Width="{TemplateBinding ThumbSize}"
+                                           Height="{TemplateBinding ThumbSize}"
+                                           Shape="{TemplateBinding ThumbShape}"
+                                           Fill="{TemplateBinding ThumbFill}"
+                                           Stroke="{TemplateBinding ThumbStroke}"
+                                           StrokeThickness="{TemplateBinding ThumbStrokeThickness}"
+                                           CornerRadius="{TemplateBinding ThumbCornerRadius}" />
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource VSliderPageButton}"
+                                  Command="{x:Static Slider.IncreaseLarge}"
+                                  CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+
+            <Border x:Name="FocusRing"
+                    Margin="-4"
+                    BorderBrush="{DynamicResource VBrush.FocusRing}"
+                    BorderThickness="2"
+                    CornerRadius="6"
+                    Opacity="0"
+                    IsHitTestVisible="False" />
+        </Grid>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="ShowTicks" Value="False">
+                <Setter TargetName="Ticks" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                <Setter TargetName="FocusRing" Property="Opacity" Value="0.55" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="Root" Property="Opacity" Value="{StaticResource VControl.DisabledOpacity}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type controls:VSlider}">
+        <Setter Property="MinHeight" Value="28" />
+        <Setter Property="MinWidth" Value="80" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="TrackThickness" Value="6" />
+        <Setter Property="ThumbSize" Value="15" />
+        <Setter Property="ThumbShape" Value="Circle" />
+        <Setter Property="ThumbFill" Value="{DynamicResource VBrush.SliderThumb}" />
+        <Setter Property="ThumbStroke" Value="{DynamicResource VBrush.SliderThumbBorder}" />
+        <Setter Property="ThumbStrokeThickness" Value="0" />
+        <Setter Property="ThumbCornerRadius" Value="3" />
+        <Setter Property="TrackBrush" Value="{DynamicResource VBrush.SliderTrack}" />
+        <Setter Property="ActiveTrackBrush" Value="{DynamicResource VBrush.SliderActive}" />
+        <Setter Property="TickBrush" Value="{DynamicResource VBrush.SliderTick}" />
+        <Setter Property="ShowTicks" Value="False" />
+        <Setter Property="IsMoveToPointEnabled" Value="True" />
+        <Setter Property="IsSnapToTickEnabled" Value="False" />
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="Template" Value="{StaticResource VSlider.HorizontalTemplate}" />
+
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Width" Value="28" />
+                <Setter Property="Height" Value="180" />
+                <Setter Property="MinHeight" Value="120" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Template" Value="{StaticResource VSlider.VerticalTemplate}" />
+            </Trigger>
+
+            <Trigger Property="Mode" Value="Segmented">
+                <Setter Property="ShowTicks" Value="True" />
+            </Trigger>
+
+            <Trigger Property="ThumbShape" Value="Ring">
+                <Setter Property="ThumbFill" Value="{DynamicResource VBrush.Surface}" />
+                <Setter Property="ThumbStroke" Value="{DynamicResource VBrush.SliderThumbBorder}" />
+                <Setter Property="ThumbStrokeThickness" Value="2" />
+                <Setter Property="ThumbSize" Value="17" />
+                <Setter Property="ThumbCornerRadius" Value="8" />
+            </Trigger>
+
+            <Trigger Property="ThumbShape" Value="HollowSquare">
+                <Setter Property="ThumbFill" Value="{DynamicResource VBrush.Surface}" />
+                <Setter Property="ThumbStroke" Value="{DynamicResource VBrush.SliderThumbBorder}" />
+                <Setter Property="ThumbStrokeThickness" Value="1.5" />
+                <Setter Property="ThumbSize" Value="14" />
+                <Setter Property="ThumbCornerRadius" Value="1" />
+            </Trigger>
+
+            <Trigger Property="ThumbShape" Value="SolidSquare">
+                <Setter Property="ThumbFill" Value="{DynamicResource VBrush.SliderThumb}" />
+                <Setter Property="ThumbStroke" Value="{DynamicResource VBrush.SliderThumbBorder}" />
+                <Setter Property="ThumbStrokeThickness" Value="0" />
+                <Setter Property="ThumbSize" Value="12" />
+                <Setter Property="ThumbCornerRadius" Value="1" />
+            </Trigger>
+
+            <Trigger Property="ThumbShape" Value="RoundedSquare">
+                <Setter Property="ThumbFill" Value="{DynamicResource VBrush.SliderThumb}" />
+                <Setter Property="ThumbStroke" Value="{DynamicResource VBrush.SliderThumbBorder}" />
+                <Setter Property="ThumbStrokeThickness" Value="0" />
+                <Setter Property="ThumbSize" Value="15" />
+                <Setter Property="ThumbCornerRadius" Value="4" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

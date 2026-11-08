@@ -1,0 +1,17 @@
+﻿# Build outputs
+**/bin/
+**/obj/
+.vs/
+*.user
+
+# Local release artifacts
+release/
+publish/
+artifacts/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.suo
+*.userosscache
+*.sln.docstates

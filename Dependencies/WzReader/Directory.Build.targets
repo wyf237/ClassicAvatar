@@ -1,0 +1,14 @@
+<Project>
+
+  <!--
+    本机环境中“覆盖已有的 XML 文档文件”会偶发被拒绝（CS0016），但删除后在编译时重新生成总是成功。
+    因此在 CoreCompile 之前先删除旧文档文件，保证连续构建稳定。
+    该目标只影响 obj 目录下的生成物，不触碰源码。
+  -->
+  <Target Name="DeleteStaleDocumentationFile"
+          BeforeTargets="CoreCompile"
+          Condition="'$(DocumentationFile)' != '' and Exists('$(DocumentationFile)')">
+    <Delete Files="$(DocumentationFile)" ContinueOnError="true" />
+  </Target>
+
+</Project>

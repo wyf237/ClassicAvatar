@@ -1,0 +1,47 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <!--
+        C2 compact metrics and type scale (handoff section 04).
+        Values are DIP; the app is laid out at 1280 x 800 with 96 DPI.
+    -->
+    <sys:Double x:Key="C2.Font.Brand">13</sys:Double>
+    <sys:Double x:Key="C2.Font.PageTitle">19</sys:Double>
+    <sys:Double x:Key="C2.Font.Section">15</sys:Double>
+    <sys:Double x:Key="C2.Font.CardTitle">11.5</sys:Double>
+    <sys:Double x:Key="C2.Font.Body">12</sys:Double>
+    <sys:Double x:Key="C2.Font.Control">11.5</sys:Double>
+    <sys:Double x:Key="C2.Font.Caption">10.5</sys:Double>
+    <sys:Double x:Key="C2.Font.Micro">10</sys:Double>
+
+    <!-- Windows built-in stack: YaHei for CJK, Segoe UI for Latin/numerals. -->
+    <FontFamily x:Key="VFont.Family">Microsoft YaHei UI, Microsoft YaHei, Segoe UI</FontFamily>
+
+    <CornerRadius x:Key="C2.Radius.Control">3</CornerRadius>
+    <CornerRadius x:Key="C2.Radius.Card">4</CornerRadius>
+    <CornerRadius x:Key="C2.Radius.Window">5</CornerRadius>
+
+    <DropShadowEffect x:Key="C2.Shadow.Mini"
+                      Color="#000000" BlurRadius="10" ShadowDepth="2"
+                      Opacity="0.12" Direction="270" />
+    <DropShadowEffect x:Key="C2.Shadow.Float"
+                      Color="#000000" BlurRadius="18" ShadowDepth="4"
+                      Opacity="0.16" Direction="270" />
+
+    <!-- Fixed brand swatches for the palette picker (never theme-dependent). -->
+    <SolidColorBrush x:Key="C2.Brand.Glacier" Color="#2563D9" />
+    <SolidColorBrush x:Key="C2.Brand.Midnight" Color="#D6B36A" />
+    <SolidColorBrush x:Key="C2.Brand.Parchment" Color="#A9502F" />
+    <SolidColorBrush x:Key="C2.Brand.Sage" Color="#3F7D62" />
+    <SolidColorBrush x:Key="C2.Brand.Coral" Color="#C25562" />
+
+    <!--
+        Play / pause glyphs taken from an iconfont symbol set (1024 grid,
+        single filled path) so the transport matches the supplied equipment
+        icon language instead of the thin VControls glyphs.
+    -->
+    <Geometry x:Key="C2Icon.Play">F1 M823.099027 426.085225c40.277084 28.623061 40.277084 98.986054 0 127.46283L229.962889 973.141648c-26.233742 18.529409-59.245348-4.388544-59.245348-41.106031V47.695187C170.66878 10.928938 203.680385-11.989015 229.914127 6.589155L823.099027 426.085225z</Geometry>
+    <Geometry x:Key="C2Icon.Pause">F1 M637.735892 125.360104A125.305131 125.305131 0 0 1 763.526075 0.001078 126.113551 126.113551 0 0 1 889.262364 125.360104V880.640151a125.305131 125.305131 0 0 1-125.736289 125.412921 126.113551 126.113551 0 0 1-125.790183-125.412921V125.360104zM134.736842 125.360104A125.305131 125.305131 0 0 1 260.473131 0.001078a126.113551 126.113551 0 0 1 125.790183 125.359026V880.640151a125.305131 125.305131 0 0 1-125.790183 125.412921A126.113551 126.113551 0 0 1 134.736842 880.640151V125.360104z</Geometry>
+</ResourceDictionary>

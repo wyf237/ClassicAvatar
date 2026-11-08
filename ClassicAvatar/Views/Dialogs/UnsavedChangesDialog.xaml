@@ -1,0 +1,27 @@
+<v:VDialog x:Class="ClassicAvatar.UnsavedChangesDialog"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:v="clr-namespace:VControls.Controls;assembly=VControls"
+           DialogWidth="460"
+           ShowCancelButton="False"
+           ShowConfirmButton="False"
+           CloseOnScrimClick="True"
+           CloseOnEscape="True"
+           Padding="22"
+           CornerRadius="4"
+           Background="{DynamicResource VBrush.Surface}"
+           BorderBrush="{DynamicResource VBrush.BorderStrong}">
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        <v:VButton Style="{StaticResource C2.Button.Ghost}" Height="30" Padding="14,0"
+                   Content="{DynamicResource VLoc.Common.Cancel}"
+                   Click="BtnCancel_Click" />
+        <v:VButton Style="{StaticResource C2.Button.Secondary}" Height="30" Padding="14,0"
+                   Margin="8,0,0,0"
+                   Content="{DynamicResource C2Loc.Unsaved.Discard}"
+                   Click="BtnDiscard_Click" />
+        <v:VButton Style="{StaticResource C2.Button.Primary}" Height="30" Padding="16,0"
+                   Margin="8,0,0,0"
+                   Content="{DynamicResource VLoc.Menu.Save}"
+                   Click="BtnSave_Click" />
+    </StackPanel>
+</v:VDialog>

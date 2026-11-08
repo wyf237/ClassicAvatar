@@ -1,0 +1,219 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <sys:String x:Key="VControls.LanguageName">zh-TW</sys:String>
+
+    <!-- App / Brand -->
+    <sys:String x:Key="VLoc.AppName">CLASSIC AVATAR</sys:String>
+    <sys:String x:Key="VLoc.AppVersion">V2.1</sys:String>
+
+    <!-- Top menu -->
+    <sys:String x:Key="VLoc.Menu.File">檔案</sys:String>
+    <sys:String x:Key="VLoc.Menu.Edit">編輯</sys:String>
+    <sys:String x:Key="VLoc.Menu.View">檢視</sys:String>
+    <sys:String x:Key="VLoc.Menu.Help">說明</sys:String>
+
+    <sys:String x:Key="VLoc.Menu.NewWindow">開新視窗</sys:String>
+    <sys:String x:Key="VLoc.Menu.Open">開啟搭配</sys:String>
+    <sys:String x:Key="VLoc.Menu.Save">儲存</sys:String>
+    <sys:String x:Key="VLoc.Menu.SaveAs">另存新檔</sys:String>
+    <sys:String x:Key="VLoc.Menu.ExportPng">匯出 PNG</sys:String>
+    <sys:String x:Key="VLoc.Menu.Exit">結束</sys:String>
+    <sys:String x:Key="VLoc.Menu.Undo">復原</sys:String>
+    <sys:String x:Key="VLoc.Menu.Redo">重做</sys:String>
+    <sys:String x:Key="VLoc.Menu.ResetAppearance">重設外觀</sys:String>
+    <sys:String x:Key="VLoc.Menu.ToggleBackground">顯示/隱藏背景</sys:String>
+    <sys:String x:Key="VLoc.Menu.ToggleShadow">顯示/隱藏地面陰影</sys:String>
+    <sys:String x:Key="VLoc.Menu.ResetView">重設檢視</sys:String>
+    <sys:String x:Key="VLoc.Menu.Usage">使用方法</sys:String>
+    <sys:String x:Key="VLoc.Menu.BackgroundImg">背景圖片</sys:String>
+    <sys:String x:Key="VLoc.Menu.Shortcuts">快速鍵</sys:String>
+    <sys:String x:Key="VLoc.Menu.About">關於作者/版本</sys:String>
+
+    <!-- Rail -->
+    <sys:String x:Key="VLoc.Rail.Character">角色</sys:String>
+    <sys:String x:Key="VLoc.Rail.Equipment">裝備</sys:String>
+    <sys:String x:Key="VLoc.Rail.Library">搭配庫</sys:String>
+    <sys:String x:Key="VLoc.Rail.Settings">設定</sys:String>
+
+    <!-- Window buttons -->
+    <sys:String x:Key="VLoc.Window.Pin">釘選</sys:String>
+    <sys:String x:Key="VLoc.Window.Unpin">取消釘選</sys:String>
+    <sys:String x:Key="VLoc.Window.Minimize">最小化</sys:String>
+    <sys:String x:Key="VLoc.Window.Close">關閉</sys:String>
+
+    <!-- Action buttons -->
+    <sys:String x:Key="VLoc.Action.Save">儲存</sys:String>
+    <sys:String x:Key="VLoc.Action.Export">匯出</sys:String>
+
+    <!-- Inspector -->
+    <sys:String x:Key="VLoc.Inspector.Title">角色</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Reset">重設</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Gender">性別</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Skin">膚色</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Hair">髮型</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Face">臉型</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Male">男性</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Female">女性</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Change">更換</sys:String>
+    <sys:String x:Key="VLoc.Inspector.HelpHint">底部工具列統一控制動作與縮放。</sys:String>
+    <sys:String x:Key="VLoc.Inspector.LocalNote">本機儲存 · 不上傳</sys:String>
+
+    <!-- Equipment -->
+    <sys:String x:Key="VLoc.Equip.Title">裝備</sys:String>
+    <sys:String x:Key="VLoc.Equip.Close">關閉</sys:String>
+    <sys:String x:Key="VLoc.Equip.SearchPlaceholder">搜尋裝備…</sys:String>
+    <sys:String x:Key="VLoc.Equip.Normal">普通</sys:String>
+    <sys:String x:Key="VLoc.Equip.Cash">現金</sys:String>
+    <sys:String x:Key="VLoc.Equip.Filter.All">全部</sys:String>
+    <sys:String x:Key="VLoc.Equip.Filter.Favorites">收藏</sys:String>
+    <sys:String x:Key="VLoc.Equip.Filter.Recent">最近</sys:String>
+    <sys:String x:Key="VLoc.Equip.Filter.Equipped">已裝備</sys:String>
+    <sys:String x:Key="VLoc.Equip.Remove">移除</sys:String>
+    <sys:String x:Key="VLoc.Equip.TryOnHint">單擊試穿，雙擊固定</sys:String>
+
+    <!-- Stage -->
+    <sys:String x:Key="VLoc.Stage.Play">播放</sys:String>
+    <sys:String x:Key="VLoc.Stage.Action">動作</sys:String>
+    <sys:String x:Key="VLoc.Stage.Zoom">縮放</sys:String>
+    <sys:String x:Key="VLoc.Stage.Fit">適應</sys:String>
+        <sys:String x:Key="VLoc.Stage.CopiedFrame">已複製目前影格</sys:String>
+<sys:String x:Key="VLoc.Stage.Screenshot">截圖</sys:String>
+    <sys:String x:Key="VLoc.Stage.Background">背景</sys:String>
+    <sys:String x:Key="VLoc.Stage.NoBackground">無背景</sys:String>
+
+    <!-- Library -->
+    <sys:String x:Key="VLoc.Library.Title">搭配庫</sys:String>
+    <sys:String x:Key="VLoc.Library.Import">匯入</sys:String>
+    <sys:String x:Key="VLoc.Library.New">新建</sys:String>
+    <sys:String x:Key="VLoc.Library.EmptyTitle">還沒有儲存的搭配</sys:String>
+    <sys:String x:Key="VLoc.Library.EmptyBody">先捏一個角色，再按 Ctrl+S 儲存。也可以匯入一個 .avatar 檔案繼續編輯。</sys:String>
+    <sys:String x:Key="VLoc.Library.NewCombo">新建搭配</sys:String>
+    <sys:String x:Key="VLoc.Library.ImportFile">匯入檔案</sys:String>
+        <sys:String x:Key="VLoc.Library.CountSuffix">個搭配 · 本機</sys:String>
+<sys:String x:Key="VLoc.Library.LocalNote">本機儲存 · 不會上傳</sys:String>
+
+    <!-- Background picker -->
+    <sys:String x:Key="VLoc.Background.Title">背景</sys:String>
+    <sys:String x:Key="VLoc.Background.OpenFolder">開啟背景資料夾</sys:String>
+    <sys:String x:Key="VLoc.Background.ScaleWithChar">隨角色縮放</sys:String>
+
+    <!-- Help -->
+    <sys:String x:Key="VLoc.Help.Title">說明</sys:String>
+    <sys:String x:Key="VLoc.Help.Subtitle">本機離線工具</sys:String>
+    <sys:String x:Key="VLoc.Help.UsageTitle">使用方法</sys:String>
+    <sys:String x:Key="VLoc.Help.UsageStep1">1. 選擇遊戲 Data 目錄（只需第一次）。</sys:String>
+    <sys:String x:Key="VLoc.Help.UsageStep2">2. 新建或開啟一個搭配，左側選擇「角色 / 裝備」。</sys:String>
+    <sys:String x:Key="VLoc.Help.UsageStep3">3. 在裝備面板裡單擊試穿，雙擊固定；底部工具列控制播放與縮放。</sys:String>
+    <sys:String x:Key="VLoc.Help.UsageStep4">4. Ctrl+S 儲存到本機；匯出用於生成圖片。</sys:String>
+    <sys:String x:Key="VLoc.Help.BackgroundTitle">背景圖片</sys:String>
+    <sys:String x:Key="VLoc.Help.BackgroundDesc">把 PNG/JPG 放進 exe 同目錄的 Backgrounds 資料夾；點擊舞台右上角「背景」選擇。背景與角色在同一個場景層，放大時同步放大。</sys:String>
+    <sys:String x:Key="VLoc.Help.AboutTitle">關於</sys:String>
+
+    <!-- Status bar -->
+    <sys:String x:Key="VLoc.Status.LocalMode">本機模式</sys:String>
+    <sys:String x:Key="VLoc.Status.NotConnected">未連線</sys:String>
+    <sys:String x:Key="VLoc.Status.Connected">已連線</sys:String>
+
+    <!-- Common -->
+        <sys:String x:Key="VLoc.Dialog.UnsavedTitle">未儲存的搭配</sys:String>
+    <sys:String x:Key="VLoc.Dialog.UnsavedBody">目前搭配尚未儲存，是否儲存後再關閉？</sys:String>
+<sys:String x:Key="VLoc.Common.Cancel">取消</sys:String>
+    <sys:String x:Key="VLoc.Common.Confirm">確認</sys:String>
+    <sys:String x:Key="VLoc.Common.Items">件</sys:String>
+
+    <!-- Settings -->
+        <sys:String x:Key="VLoc.Settings.Skin">皮膚</sys:String>
+<sys:String x:Key="VLoc.Settings.Theme">主題</sys:String>
+        <sys:String x:Key="VLoc.Theme.Glacier">冰川</sys:String>
+    <sys:String x:Key="VLoc.Theme.Midnight">午夜</sys:String>
+    <sys:String x:Key="VLoc.Theme.GlacierDesc">冰川藍灰</sys:String>
+    <sys:String x:Key="VLoc.Theme.MidnightDesc">午夜紫金</sys:String>
+<sys:String x:Key="VLoc.Settings.Light">淺色</sys:String>
+    <sys:String x:Key="VLoc.Settings.Dark">深色</sys:String>
+    <sys:String x:Key="VLoc.Settings.Language">語言</sys:String>
+    <sys:String x:Key="VLoc.Settings.Title">設定</sys:String>
+    <sys:String x:Key="VLoc.Settings.Cache">快取</sys:String>
+        <sys:String x:Key="VLoc.Settings.MoreThemes">更多主題（後續）</sys:String>
+<sys:String x:Key="VLoc.Settings.ClearCache">清除圖示快取</sys:String>
+
+    <!-- 補充鍵 -->
+    <sys:String x:Key="VLoc.Doc.Untitled">未命名搭配</sys:String>
+    <sys:String x:Key="VLoc.Menu.ExportFrames">匯出影格圖片</sys:String>
+    <sys:String x:Key="VLoc.Menu.ExportAvatar">匯出 .avatar</sys:String>
+    <sys:String x:Key="VLoc.Menu.ClearIconCache">清除圖示快取</sys:String>
+    <sys:String x:Key="VLoc.Menu.ZoomIn">放大</sys:String>
+    <sys:String x:Key="VLoc.Menu.ZoomOut">縮小</sys:String>
+    <sys:String x:Key="VLoc.Stage.ZoomIn">放大</sys:String>
+    <sys:String x:Key="VLoc.Stage.ZoomOut">縮小</sys:String>
+    <sys:String x:Key="VLoc.Equip.Equipped">已裝備</sys:String>
+    <sys:String x:Key="VLoc.Equip.NoSelection">未選擇部件</sys:String>
+    <sys:String x:Key="VLoc.Equip.CopyId">複製 ID</sys:String>
+    <sys:String x:Key="VLoc.Equip.CopyName">複製名稱</sys:String>
+    <sys:String x:Key="VLoc.Equip.CopyImage">複製圖片</sys:String>
+    <sys:String x:Key="VLoc.Equip.Favorite">收藏部件</sys:String>
+    <sys:String x:Key="VLoc.Equip.SaveLocal">儲存圖示到本機</sys:String>
+    <sys:String x:Key="VLoc.Common.Loading">載入中</sys:String>
+    <sys:String x:Key="VLoc.Skin.0">嫩白 01</sys:String>
+    <sys:String x:Key="VLoc.Skin.1">暖白 02</sys:String>
+    <sys:String x:Key="VLoc.Skin.2">自然 03</sys:String>
+    <sys:String x:Key="VLoc.Skin.3">小麥 04</sys:String>
+    <sys:String x:Key="VLoc.Skin.4">蜂蜜 05</sys:String>
+    <sys:String x:Key="VLoc.Skin.5">古銅 06</sys:String>
+    <sys:String x:Key="VLoc.Skin.6">深棕 07</sys:String>
+    <sys:String x:Key="VLoc.HairDye.0">不染</sys:String>
+    <sys:String x:Key="VLoc.HairDye.1">烏黑</sys:String>
+    <sys:String x:Key="VLoc.HairDye.2">深棕</sys:String>
+    <sys:String x:Key="VLoc.HairDye.3">亞麻金</sys:String>
+    <sys:String x:Key="VLoc.HairDye.4">紅</sys:String>
+    <sys:String x:Key="VLoc.HairDye.5">藍</sys:String>
+    <sys:String x:Key="VLoc.HairDye.6">綠</sys:String>
+    <sys:String x:Key="VLoc.HairDye.7">紫</sys:String>
+    <sys:String x:Key="VLoc.HairDye.8">銀白</sys:String>
+    <sys:String x:Key="VLoc.HairDye.9">淺棕</sys:String>
+    <sys:String x:Key="VLoc.HairDye.10">粉</sys:String>
+    <sys:String x:Key="VLoc.Inspector.HairDye">髮色</sys:String>
+    <sys:String x:Key="VLoc.Help.ShortcutTitle">快速鍵</sys:String>
+    <sys:String x:Key="VLoc.Help.ShortcutBody">Ctrl+S 儲存 · Ctrl+Z 復原 · Ctrl+Y 重做 · Ctrl+O 開啟 · Ctrl+E 匯出 PNG · Esc 關閉彈層</sys:String>
+    <sys:String x:Key="VLoc.Help.AboutBody">Classic Avatar V2.1 · 本機離線像素角色搭配工具。所有資料均來自本機新楓之谷 Data 目錄，不會上傳。</sys:String>
+    <sys:String x:Key="VLoc.Menu.OpenData">開啟資料目錄</sys:String>
+    <sys:String x:Key="VLoc.Menu.ExportGif">匯出 GIF 動圖</sys:String>
+    <sys:String x:Key="VLoc.Menu.ExportText">匯出搭配文字</sys:String>
+    <sys:String x:Key="VLoc.NoData.Title">尚未連接遊戲資料</sys:String>
+    <sys:String x:Key="VLoc.NoData.Desc">請選擇新楓之谷安裝目錄下的 Data 資料夾，只需設定一次。</sys:String>
+    <sys:String x:Key="VLoc.NoData.Button">選擇資料目錄</sys:String>
+    <sys:String x:Key="VLoc.Equip.CashFilter">篩選</sys:String>
+    <sys:String x:Key="VLoc.Equip.Subtitle">瀏覽並試穿裝備</sys:String>
+    <sys:String x:Key="VLoc.Export.Title">匯出</sys:String>
+    <sys:String x:Key="VLoc.Export.Subtitle">選擇匯出格式，保存角色形象或資料</sys:String>
+    <sys:String x:Key="VLoc.Export.Frame">影格圖片</sys:String>
+    <sys:String x:Key="VLoc.Export.FrameDesc">目前動作單帧，右側附帶裝備清單</sys:String>
+    <sys:String x:Key="VLoc.Export.Gif">GIF 動圖</sys:String>
+    <sys:String x:Key="VLoc.Export.GifDesc">目前動作循環動畫</sys:String>
+    <sys:String x:Key="VLoc.Export.Text">搭配文字</sys:String>
+    <sys:String x:Key="VLoc.Export.TextDesc">裝備名稱與 ID 清單</sys:String>
+    <sys:String x:Key="VLoc.Export.Avatar">角色檔案</sys:String>
+    <sys:String x:Key="VLoc.Export.AvatarDesc">可繼續編輯的 .avatar 檔案</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Subtitle">外觀與顯示</sys:String>
+    <sys:String x:Key="VLoc.Library.Open">開啟</sys:String>
+    <sys:String x:Key="VLoc.Menu.BackgroundHelp">背景圖片</sys:String>
+    <sys:String x:Key="VLoc.Menu.Compare">對比</sys:String>
+    <sys:String x:Key="VLoc.Menu.Recent">最近開啟</sys:String>
+    <sys:String x:Key="VLoc.Outfit.Title">我的搭配</sys:String>
+    <sys:String x:Key="VLoc.Outfit.AutoSave">自動儲存</sys:String>
+    <sys:String x:Key="VLoc.Outfit.All">全部搭配</sys:String>
+    <sys:String x:Key="VLoc.Outfit.New">新增搭配</sys:String>
+    <sys:String x:Key="VLoc.Outfit.Collapse">收合</sys:String>
+    <sys:String x:Key="VLoc.Rail.DataSource">資料來源</sys:String>
+    <sys:String x:Key="VLoc.Rail.Export">匯出</sys:String>
+    <sys:String x:Key="VLoc.Settings.Subtitle">偏好與本機資料</sys:String>
+    <sys:String x:Key="VLoc.Settings.CacheDesc">清理已快取的裝備圖示</sys:String>
+    <sys:String x:Key="VLoc.Status.Saved">已儲存</sys:String>
+    <sys:String x:Key="VLoc.Window.Maximize">最大化</sys:String>
+    <sys:String x:Key="VLoc.Status.Unsaved">未儲存</sys:String>
+    <sys:String x:Key="VLoc.Status.UnsavedShort">未儲存</sys:String>
+    <sys:String x:Key="VLoc.Menu.Export">匯出</sys:String>
+    <sys:String x:Key="VLoc.Inspector.Random">隨機外觀</sys:String>
+</ResourceDictionary>

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>VControls</AssemblyName>
+    <RootNamespace>VControls</RootNamespace>
+    <IsPackable>true</IsPackable>
+    <PackageId>VControls</PackageId>
+    <Description>A reusable WPF control library with themeable color/resource management.</Description>
+    <Authors>VControls</Authors>
+  </PropertyGroup>
+
+</Project>

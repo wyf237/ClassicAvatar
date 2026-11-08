@@ -1,0 +1,66 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <!-- Control metrics: shadcn-like controls on a 4px grid. -->
+    <sys:Double x:Key="VControl.Button.Width">NaN</sys:Double>
+    <sys:Double x:Key="VControl.Button.Height">32</sys:Double>
+    <sys:Double x:Key="VControl.Button.MinWidth">0</sys:Double>
+    <sys:Double x:Key="VControl.Button.MinHeight">32</sys:Double>
+    <Thickness x:Key="VControl.Button.Padding">12,2</Thickness>
+    <sys:Double x:Key="VControl.DisabledOpacity">0.45</sys:Double>
+
+    <sys:Double x:Key="VControl.Input.Height">32</sys:Double>
+    <sys:Double x:Key="VControl.Select.Height">34</sys:Double>
+    <sys:Double x:Key="VControl.Segment.Height">32</sys:Double>
+    <sys:Double x:Key="VControl.Tab.MinWidth">240</sys:Double>
+    <sys:Double x:Key="VControl.Dialog.Width">440</sys:Double>
+
+    <!-- Small radii are intentional: the requested dialog is less rounded
+         than shadcn's default 10px card. -->
+    <CornerRadius x:Key="VRadius.Control">6</CornerRadius>
+    <CornerRadius x:Key="VRadius.Card">8</CornerRadius>
+    <CornerRadius x:Key="VRadius.Window">10</CornerRadius>
+    <CornerRadius x:Key="VRadius.Segment">4</CornerRadius>
+    <CornerRadius x:Key="VRadius.Dialog">6</CornerRadius>
+    <CornerRadius x:Key="VRadius.Popup">8</CornerRadius>
+    <CornerRadius x:Key="VRadius.Swatch">14</CornerRadius>
+
+    <DropShadowEffect x:Key="VShadow.Window"
+                      Color="#000000"
+                      BlurRadius="32"
+                      ShadowDepth="6"
+                      Opacity="0.22"
+                      Direction="270" />
+    <DropShadowEffect x:Key="VShadow.Card"
+                      Color="#000000"
+                      BlurRadius="18"
+                      ShadowDepth="3"
+                      Opacity="0.08"
+                      Direction="270" />
+    <DropShadowEffect x:Key="VShadow.Artboard"
+                      Color="#000000"
+                      BlurRadius="20"
+                      ShadowDepth="3"
+                      Opacity="0.14"
+                      Direction="270" />
+    <DropShadowEffect x:Key="VShadow.Popup"
+                      Color="#000000"
+                      BlurRadius="24"
+                      ShadowDepth="8"
+                      Opacity="0.16"
+                      Direction="270" />
+    <DropShadowEffect x:Key="VShadow.Dialog"
+                      Color="#000000"
+                      BlurRadius="48"
+                      ShadowDepth="16"
+                      Opacity="0.24"
+                      Direction="270" />
+    <DropShadowEffect x:Key="VShadow.Segment"
+                      Color="#000000"
+                      BlurRadius="6"
+                      ShadowDepth="1"
+                      Opacity="0.18"
+                      Direction="270" />
+</ResourceDictionary>

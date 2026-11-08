@@ -1,0 +1,14 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        Motion tokens
+        =============
+        State color transitions are implemented in VCornerRadioButton code:
+        background 320ms, text/icon 70ms after a 130ms delay.
+        Hover/press opacity animations use these easing functions.
+    -->
+    <CubicEase x:Key="VMotion.Ease.Out" EasingMode="EaseOut" />
+    <CubicEase x:Key="VMotion.Ease.InOut" EasingMode="EaseInOut" />
+</ResourceDictionary>

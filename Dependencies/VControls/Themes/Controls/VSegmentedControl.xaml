@@ -1,0 +1,173 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:VControls.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Shared/Typography.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Shared/Metrics.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Text, icon-only and icon + text segments share one template. -->
+    <DataTemplate x:Key="VSegmentedItemTemplate" DataType="{x:Type controls:VSegmentedItem}">
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <Path x:Name="IconPath"
+                  Data="{Binding Icon}"
+                  Width="{Binding IconSize}"
+                  Height="{Binding IconSize}"
+                  Margin="{Binding IconMargin}"
+                  Stretch="Uniform"
+                  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"
+                  SnapsToDevicePixels="True" />
+            <TextBlock x:Name="Label"
+                       Text="{Binding Text}"
+                       Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"
+                       FontWeight="Medium"
+                       VerticalAlignment="Center"
+                       TextTrimming="CharacterEllipsis" />
+        </StackPanel>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding Icon}" Value="{x:Null}">
+                <Setter TargetName="IconPath" Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Text}" Value="">
+                <Setter TargetName="Label" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="IconPath" Property="Margin" Value="0" />
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+    <Style x:Key="VSegmentedItemContainer" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Foreground"
+                Value="{Binding UnselectedForeground, RelativeSource={RelativeSource AncestorType={x:Type controls:VSegmentedControl}}}" />
+        <Setter Property="AutomationProperties.Name" Value="{Binding Text}" />
+        <Setter Property="ToolTip" Value="{Binding ToolTip}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Grid Margin="2" Background="Transparent">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground"
+                                    Value="{Binding SelectedForeground, RelativeSource={RelativeSource AncestorType={x:Type controls:VSegmentedControl}}}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="{StaticResource VControl.DisabledOpacity}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Text}" Value="">
+                <Setter Property="AutomationProperties.Name" Value="{Binding ToolTip}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ToolTip}" Value="">
+                <Setter Property="ToolTip" Value="{x:Null}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type controls:VSegmentedControl}">
+        <Setter Property="Height" Value="{DynamicResource VControl.Segment.Height}" />
+        <Setter Property="Padding" Value="3" />
+        <Setter Property="FontFamily" Value="{DynamicResource VFont.Family}" />
+        <Setter Property="FontSize" Value="{DynamicResource VFont.Size.Body}" />
+        <Setter Property="Foreground" Value="{DynamicResource VBrush.TextSecondary}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="CornerRadius" Value="{DynamicResource VRadius.Segment}" />
+        <Setter Property="TrackBackground" Value="{DynamicResource VBrush.SegmentTrack}" />
+        <Setter Property="ThumbBackground" Value="{DynamicResource VBrush.SegmentThumb}" />
+        <Setter Property="ThumbBorderBrush" Value="{DynamicResource VBrush.SegmentThumbBorder}" />
+        <Setter Property="SelectedForeground" Value="{DynamicResource VBrush.TextPrimary}" />
+        <Setter Property="UnselectedForeground" Value="{DynamicResource VBrush.TextSecondary}" />
+        <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource VSegmentedItemContainer}" />
+        <Setter Property="ItemTemplate" Value="{StaticResource VSegmentedItemTemplate}" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Cursor" Value="Hand" />
+
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="1" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:VSegmentedControl}">
+                    <Grid>
+                        <Border x:Name="Track"
+                                Background="{TemplateBinding TrackBackground}"
+                                CornerRadius="{TemplateBinding ContainerCornerRadius}"
+                                Padding="{TemplateBinding Padding}"
+                                SnapsToDevicePixels="True"
+                                UseLayoutRounding="True">
+                            <Grid x:Name="PART_Host"
+                                  Background="Transparent"
+                                  ClipToBounds="True">
+                                <Border x:Name="PART_Thumb"
+                                        Background="{TemplateBinding ThumbBackground}"
+                                        BorderBrush="{TemplateBinding ThumbBorderBrush}"
+                                        BorderThickness="1"
+                                        CornerRadius="{TemplateBinding CornerRadius}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Stretch"
+                                        Margin="0,2,0,2"
+                                        Effect="{DynamicResource VShadow.Segment}"
+                                        IsHitTestVisible="False"
+                                        SnapsToDevicePixels="True">
+                                    <Border.RenderTransform>
+                                        <TranslateTransform X="0" />
+                                    </Border.RenderTransform>
+                                </Border>
+                                <ItemsPresenter />
+                            </Grid>
+                        </Border>
+
+                        <Border x:Name="FocusRing"
+                                Margin="-3"
+                                BorderBrush="{DynamicResource VBrush.FocusRing}"
+                                BorderThickness="2"
+                                CornerRadius="{TemplateBinding ContainerCornerRadius}"
+                                Opacity="0"
+                                IsHitTestVisible="False" />
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter TargetName="FocusRing" Property="Opacity" Value="0.65" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Track" Property="Opacity" Value="{StaticResource VControl.DisabledOpacity}" />
+                            <Setter Property="Cursor" Value="Arrow" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

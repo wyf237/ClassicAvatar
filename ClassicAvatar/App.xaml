@@ -1,0 +1,43 @@
+﻿<Application x:Class="ClassicAvatar.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ClassicAvatar"
+             StartupUri="Views/MainWindow/MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- VControls: shared icons and tokens -->
+                <ResourceDictionary Source="pack://application:,,,/VControls;component/Resources/Icons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Shared/Typography.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Shared/Metrics.xaml" />
+
+                <!-- C2: compact metrics, palette and icon geometries -->
+                <ResourceDictionary Source="pack://application:,,,/ClassicAvatar;component/Themes/C2.Tokens.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/ClassicAvatar;component/Resources/Icons/PartIcons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/ClassicAvatar;component/Resources/Icons/C2UiIcons.xaml" />
+                <!-- Default colorway; C2Appearance swaps this dictionary at runtime. -->
+                <ResourceDictionary Source="pack://application:,,,/ClassicAvatar;component/Themes/Palettes/Light.xaml" />
+
+                <!-- VControls language (zh-CN by default) + C2-only strings -->
+                <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Languages/zh-CN.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/ClassicAvatar;component/Resources/Strings/C2.zh-CN.xaml" />
+
+                <!-- VControls control styles -->
+                <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Controls/VCornerRadioButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Controls/VButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Controls/VComboBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Controls/VTextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Controls/VToolTip.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Controls/VListBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Controls/VMenu.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Controls/VCard.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Controls/VTabControl.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/VControls;component/Themes/Controls/VDialog.xaml" />
+
+                <!-- C2 overrides last so their BasedOn definitions resolve -->
+                <ResourceDictionary Source="pack://application:,,,/ClassicAvatar;component/Themes/C2.Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
+
