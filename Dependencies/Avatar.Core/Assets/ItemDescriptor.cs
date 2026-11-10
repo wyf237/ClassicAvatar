@@ -111,7 +111,7 @@ public sealed class ItemDescriptor
     /// <summary><c>info/gender</c> 声明值；本数据集通常缺失。</summary>
     public Gender DeclaredGender { get; }
 
-    /// <summary>按 ID 区间推断的性别（仅发型/脸有效）。</summary>
+    /// <summary>按 ID 区间推断的性别（发型、脸、上装、长袍、裤裙有效）。</summary>
     public Gender InferredGender { get; }
 
     /// <summary>最终性别：优先声明值，否则推断值。</summary>
@@ -318,8 +318,10 @@ public sealed class ItemDescriptor
     /// 按 ID 区间推断性别（本数据集没有 <c>info/gender</c>）。
     /// </summary>
     /// <remarks>
-    /// 发型：00030xxx 男性、00031xxx 女性；脸：00020xxx 男性、00021xxx 女性。
-    /// 其余部位返回 <see cref="Gender.Unisex"/>（放行）。
+    /// 经典数据使用 ID 中的千位区分性别：上衣 1040/1045 男性、1041/1046 女性；
+    /// 长袍 1050/1055 男性、1051/1056 女性；裤裙 1060 男性、1061 女性；
+    /// 发型 00030xxx 男性、00031xxx 女性；脸 00020xxx 男性、00021xxx 女性。
+    /// 其余部位（以及现金/特殊区间）返回 <see cref="Gender.Unisex"/>（放行）。
     /// </remarks>
     /// <param name="slot">槽位。</param>
     /// <param name="itemId">物品 ID。</param>
@@ -330,6 +332,16 @@ public sealed class ItemDescriptor
         EquipSlot.Hair when itemId is >= 31000 and < 32000 => Gender.Female,
         EquipSlot.Face when itemId is >= 20000 and < 21000 => Gender.Male,
         EquipSlot.Face when itemId is >= 21000 and < 22000 => Gender.Female,
+        EquipSlot.Coat when itemId is >= 1040000 and < 1041000 => Gender.Male,
+        EquipSlot.Coat when itemId is >= 1041000 and < 1042000 => Gender.Female,
+        EquipSlot.Coat when itemId is >= 1045000 and < 1046000 => Gender.Male,
+        EquipSlot.Coat when itemId is >= 1046000 and < 1047000 => Gender.Female,
+        EquipSlot.Longcoat when itemId is >= 1050000 and < 1051000 => Gender.Male,
+        EquipSlot.Longcoat when itemId is >= 1051000 and < 1052000 => Gender.Female,
+        EquipSlot.Longcoat when itemId is >= 1055000 and < 1056000 => Gender.Male,
+        EquipSlot.Longcoat when itemId is >= 1056000 and < 1057000 => Gender.Female,
+        EquipSlot.Pants when itemId is >= 1060000 and < 1061000 => Gender.Male,
+        EquipSlot.Pants when itemId is >= 1061000 and < 1062000 => Gender.Female,
         _ => Gender.Unisex,
     };
 

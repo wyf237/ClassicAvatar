@@ -1,10 +1,10 @@
-# Classic Avatar
+﻿# Classic Avatar
 
 [简体中文](README.md) | [繁體中文](README.zh-TW.md) | [English](README.en-US.md)
 
 ![Classic Avatar](docs/images/main.png)
 
-Classic Avatar V1.0 is a **local, offline outfit workbench** for classic MapleStory avatars. Browse equipment, preview the character instantly, save outfits, and export PNG, GIF, TXT, or `.avatar` files.
+Classic Avatar V1.0.1 is a **local, offline outfit workbench** for classic MapleStory avatars. Browse equipment, preview the character instantly, save outfits, and export PNG, GIF, TXT, or `.avatar` files.
 
 Everything is read from the local game `Data` folder. The app does not connect to the internet and never uploads anything.
 
@@ -14,8 +14,8 @@ Get the latest build from [GitHub Releases](https://github.com/wyf237/ClassicAva
 
 | Package | Description |
 |---|---|
-| **ClassicAvatar-v1.0-win-x64-full.zip** | Full release with the .NET runtime included; double-click to run |
-| **ClassicAvatar-v1.0-win-x64-lite.zip** | Lite release; requires .NET 10 Desktop Runtime |
+| **ClassicAvatar-v1.0.1-win-x64-full.zip** | Full release with the .NET runtime included; double-click to run |
+| **ClassicAvatar-v1.0.1-win-x64-lite.zip** | Lite release; requires .NET 10 Desktop Runtime |
 
 Both packages include a `Docs/` folder:
 
@@ -107,6 +107,10 @@ ClassicAvatar/
   README.en-US.md        English
 ```
 
+## Changelog
+
+- [CHANGELOG.md](CHANGELOG.md)
+
 ## Documentation
 
 - [Architecture](ClassicAvatar/docs/ARCHITECTURE.md)
@@ -121,3 +125,5 @@ ClassicAvatar/
 - Bug reports: wyf237@126.com (China) · wyf23259@gmail.com (Other)
 
 If you like this app, please fame me in game, thank you!
+
+

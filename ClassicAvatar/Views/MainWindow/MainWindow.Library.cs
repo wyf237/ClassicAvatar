@@ -171,6 +171,57 @@ namespace ClassicAvatar
             this.EquipmentTab.IsChecked = true;
         }
 
+        /// <summary>Deletes one saved outfit after confirmation, including its file.</summary>
+        private void BtnLibraryDelete_Click(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            if (sender is not FrameworkElement { DataContext: LibraryItemVm item }) return;
+
+            if (!this.ShowConfirm(
+                    string.Format(
+                        this.C2("C2Loc.Library.DeleteBody",
+                            "确定要删除“{0}”吗？本地保存的搭配文件也会一并删除，此操作无法撤销。"),
+                        item.Name),
+                    this.C2("C2Loc.Library.DeleteTitle", "删除搭配"),
+                    this.C2("VLoc.Common.Confirm", "确认"),
+                    this.C2("VLoc.Common.Cancel", "取消")))
+            {
+                return;
+            }
+
+            try
+            {
+                if (File.Exists(item.Path))
+                {
+                    File.Delete(item.Path);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowAlert(ex.Message, "删除失败");
+                return;
+            }
+
+            this._libraryCache.Remove(item.Path);
+            this._libraryItems.Remove(item);
+
+            // Forget the deleted path on any open tab so a later save does not
+            // silently recreate the file the user just removed.
+            foreach (OutfitDocument doc in this._documents)
+            {
+                if (string.Equals(doc.Path, item.Path, StringComparison.OrdinalIgnoreCase))
+                {
+                    doc.Path = null;
+                }
+            }
+            if (string.Equals(this._documentPath, item.Path, StringComparison.OrdinalIgnoreCase))
+            {
+                this._documentPath = null;
+            }
+
+            this.ApplyLibraryFilter();
+        }
+
         private void BtnLibraryImport_Click(object sender, RoutedEventArgs e) => this.MenuOpen_Click(sender, e);
         #endregion
 

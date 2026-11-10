@@ -1,10 +1,10 @@
-# Classic Avatar
+﻿# Classic Avatar
 
 [简体中文](README.md) | [繁體中文](README.zh-TW.md) | [English](README.en-US.md)
 
 ![Classic Avatar](docs/images/main.png)
 
-Classic Avatar V1.0 是一款面向冒险岛经典版本的**本地离线角色配装工具**。浏览装备、实时预览、保存搭配，并导出 PNG、GIF、TXT 或 `.avatar` 搭配文件。
+Classic Avatar V1.0.1 是一款面向冒险岛经典版本的**本地离线角色配装工具**。浏览装备、实时预览、保存搭配，并导出 PNG、GIF、TXT 或 `.avatar` 搭配文件。
 
 所有素材均读取自本机游戏 `Data` 目录，软件不联网、不上传任何内容。
 
@@ -14,8 +14,8 @@ Classic Avatar V1.0 是一款面向冒险岛经典版本的**本地离线角色�
 
 | 版本 | 说明 |
 |---|---|
-| **ClassicAvatar-v1.0-win-x64-full.zip** | 全量发布，自带 .NET 运行时，双击即可运行 |
-| **ClassicAvatar-v1.0-win-x64-lite.zip** | 简量发布，体积小，需要安装 .NET 10 Desktop Runtime |
+| **ClassicAvatar-v1.0.1-win-x64-full.zip** | 全量发布，自带 .NET 运行时，双击即可运行 |
+| **ClassicAvatar-v1.0.1-win-x64-lite.zip** | 简量发布，体积小，需要安装 .NET 10 Desktop Runtime |
 
 两个版本内均包含 `Docs/` 使用说明：
 
@@ -107,6 +107,10 @@ ClassicAvatar/
   README.en-US.md        English
 ```
 
+## 更新记录
+
+- [CHANGELOG.md](CHANGELOG.md)
+
 ## 文档
 
 - [架构说明](ClassicAvatar/docs/ARCHITECTURE.md)
@@ -121,3 +125,5 @@ ClassicAvatar/
 - BUG 建议：wyf237@126.com（中国） · wyf23259@gmail.com（其他）
 
 如果喜欢本软件，请在游戏中为我加一点人气，谢谢！
+
+

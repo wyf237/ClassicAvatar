@@ -51,13 +51,14 @@ namespace ClassicAvatar
 
         private OutfitDocument CreateDefaultDocument()
         {
+            bool female = this.CurrentGender == Gender.Female;
             CharacterProfile profile = new()
             {
                 Id = Guid.NewGuid().ToString("N"),
-                Gender = Gender.Male,
+                Gender = female ? Gender.Female : Gender.Male,
                 SkinIndex = 0,
-                HairId = 30000,
-                FaceId = 20000,
+                HairId = female ? 31000 : 30000,
+                FaceId = female ? 21000 : 20000,
                 DefaultAction = "stand1",
             };
 
@@ -65,8 +66,8 @@ namespace ClassicAvatar
             {
                 foreach ((EquipSlot slot, int id) in new[]
                 {
-                    (EquipSlot.Coat, 1040000),
-                    (EquipSlot.Pants, 1060000),
+                    (EquipSlot.Coat, female ? 1041000 : 1040000),
+                    (EquipSlot.Pants, female ? 1061000 : 1060000),
                     (EquipSlot.Shoes, 1072000),
                 })
                 {

@@ -243,16 +243,47 @@ namespace ClassicAvatar
         {
             this.CommitActiveDocument();
 
-            if (!this._dirty || this._build == null)
+            // Every tab is validated separately: a clean document never triggers
+            // the prompt, dirty ones are listed by tab so the user knows exactly
+            // which outfits still need to be saved.
+            List<OutfitDocument> dirty = [];
+            foreach (OutfitDocument doc in this._documents)
             {
-                return;
+                if (doc.IsDirty) dirty.Add(doc);
             }
+            if (dirty.Count == 0) return;
 
             try
             {
+                string message;
+                if (dirty.Count == 1)
+                {
+                    message = string.Format(
+                        this.C2("C2Loc.Unsaved.Single", "“{0}”还没有保存，是否保存后关闭？"),
+                        dirty[0].Title);
+                }
+                else
+                {
+                    List<string> lines =
+                    [
+                        string.Format(
+                            this.C2("C2Loc.Unsaved.MultipleHeader", "以下 {0} 个搭配还没有保存："),
+                            dirty.Count),
+                    ];
+                    foreach (OutfitDocument doc in dirty)
+                    {
+                        lines.Add(string.Format(
+                            this.C2("C2Loc.Unsaved.Line", "{0} · {1}"),
+                            this.TabLabel(doc),
+                            doc.Title));
+                    }
+                    lines.Add(this.C2("C2Loc.Unsaved.Question", "是否保存后关闭？"));
+                    message = string.Join("\n", lines);
+                }
+
                 UnsavedChangesDialog dialog = new(
                     this.Loc("VLoc.Dialog.UnsavedTitle", "未保存的搭配"),
-                    this.Loc("VLoc.Dialog.UnsavedBody", "当前搭配还没有保存，是否保存后再关闭？"));
+                    message);
                 dialog.ShowDialog(this);
 
                 if (dialog.Choice == UnsavedChoice.Cancel)
@@ -263,17 +294,108 @@ namespace ClassicAvatar
 
                 if (dialog.Choice == UnsavedChoice.Save)
                 {
-                    this.SaveAs();
-                    if (this._dirty)
+                    foreach (OutfitDocument doc in dirty)
                     {
-                        e.Cancel = true;
+                        if (!this.SaveDocumentForClose(doc))
+                        {
+                            e.Cancel = true;
+                            return;
+                        }
                     }
+                    this.SetDirty(false);
                 }
             }
             catch (Exception)
             {
                 // Never close with unsaved work if the prompt itself failed.
                 e.Cancel = true;
+            }
+        }
+
+        /// <summary>Tab caption used by the close prompt ("标签 1").</summary>
+        private string TabLabel(OutfitDocument doc)
+        {
+            int index = this.IndexOfTab(this.MainTabs, doc);
+            if (index >= 0)
+            {
+                return string.Format(this.C2("C2Loc.Unsaved.Tab", "标签 {0}"), index + 1);
+            }
+
+            index = this.IndexOfTab(this.CompareTabs, doc);
+            return string.Format(this.C2("C2Loc.Unsaved.CompareTab", "对比标签 {0}"), index + 1);
+        }
+
+        private int IndexOfTab(VTabControl control, OutfitDocument doc)
+        {
+            for (int i = 0; i < control.Items.Count; i++)
+            {
+                if (control.Items[i] is VTabItem tab && ReferenceEquals(tab.Tag, doc))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        /// <summary>Saves one dirty document while closing; returns false when it must be aborted.</summary>
+        private bool SaveDocumentForClose(OutfitDocument doc)
+        {
+            if (!doc.IsDirty) return true;
+
+            // Without a data folder nothing can be rebuilt, so saving would only
+            // trap the user in the close prompt.
+            if (this._data == null) return true;
+
+            // Documents that were saved before keep their path, so closing can
+            // write them without another dialog.
+            if (!string.IsNullOrWhiteSpace(doc.Path))
+            {
+                return this.TrySaveDocumentToPath(doc, doc.Path!);
+            }
+
+            this.ActivateDocument(doc);
+            this.MenuSave_Click(this, new RoutedEventArgs());
+            return !doc.IsDirty;
+        }
+
+        private bool TrySaveDocumentToPath(OutfitDocument doc, string path)
+        {
+            if (this._data == null) return false;
+            try
+            {
+                AvatarBuild build = AvatarAssembler.Build(this._data, doc.Profile, PreviewOptions);
+                AvatarPack.Save(build, path);
+                doc.Path = path;
+                doc.IsDirty = false;
+                if (ReferenceEquals(doc, this._activeDocument))
+                {
+                    this._documentPath = path;
+                    this.SetDirty(false);
+                }
+                else
+                {
+                    this.UpdateTabHeader(doc);
+                }
+                this.LoadLibrary();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                this.ShowAlert(ex.Message, "保存失败");
+                return false;
+            }
+        }
+
+        private void ActivateDocument(OutfitDocument doc)
+        {
+            if (ReferenceEquals(doc, this._activeDocument)) return;
+            if (this.IndexOfTab(this.MainTabs, doc) >= 0)
+            {
+                this.ActivateSide(EditSide.Left, doc);
+            }
+            else if (this.IndexOfTab(this.CompareTabs, doc) >= 0)
+            {
+                this.ActivateSide(EditSide.Right, doc);
             }
         }
 

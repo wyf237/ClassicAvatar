@@ -1,10 +1,10 @@
-# Classic Avatar
+﻿# Classic Avatar
 
 [简体中文](README.md) | [繁體中文](README.zh-TW.md) | [English](README.en-US.md)
 
 ![Classic Avatar](docs/images/main.png)
 
-Classic Avatar V1.0 是一款面向新楓之谷經典版本的**本機離線角色配裝工具**。瀏覽裝備、即時預覽、儲存搭配，並匯出 PNG、GIF、TXT 或 `.avatar` 搭配檔。
+Classic Avatar V1.0.1 是一款面向新楓之谷經典版本的**本機離線角色配裝工具**。瀏覽裝備、即時預覽、儲存搭配，並匯出 PNG、GIF、TXT 或 `.avatar` 搭配檔。
 
 所有素材均讀取自本機遊戲 `Data` 目錄，軟體不連網、不上傳任何內容。
 
@@ -14,8 +14,8 @@ Classic Avatar V1.0 是一款面向新楓之谷經典版本的**本機離線角�
 
 | 版本 | 說明 |
 |---|---|
-| **ClassicAvatar-v1.0-win-x64-full.zip** | 全量發佈，自帶 .NET 執行階段，雙擊即可執行 |
-| **ClassicAvatar-v1.0-win-x64-lite.zip** | 簡量發佈，體積小，需安裝 .NET 10 Desktop Runtime |
+| **ClassicAvatar-v1.0.1-win-x64-full.zip** | 全量發佈，自帶 .NET 執行階段，雙擊即可執行 |
+| **ClassicAvatar-v1.0.1-win-x64-lite.zip** | 簡量發佈，體積小，需安裝 .NET 10 Desktop Runtime |
 
 兩個版本內均包含 `Docs/` 使用說明：
 
@@ -107,6 +107,10 @@ ClassicAvatar/
   README.en-US.md        English
 ```
 
+## 更新記錄
+
+- [CHANGELOG.md](CHANGELOG.md)
+
 ## 文件
 
 - [架構說明](ClassicAvatar/docs/ARCHITECTURE.md)
@@ -121,3 +125,5 @@ ClassicAvatar/
 - BUG 建議：wyf237@126.com（中國） · wyf23259@gmail.com（其他）
 
 如果喜歡本軟體，請在遊戲中為我加一點人氣，謝謝！
+
+

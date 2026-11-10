@@ -40,7 +40,6 @@ namespace ClassicAvatar
 
             this._equipSlot = slot.Slot;
             this.UpdatePartHeader();
-            this.UpdateCashFilterForSlot();
 
             // A leftover keyword from the previous part would make the new slot
             // look empty; reset it when the browse context changes.
@@ -52,27 +51,6 @@ namespace ClassicAvatar
             }
 
             this.LoadEquipList();
-        }
-
-        /// <summary>Hair and face are not split into normal/cash; only "全部" applies.</summary>
-        private void UpdateCashFilterForSlot()
-        {
-            if (this.EquipCashFilter == null) return;
-
-            bool available = this._equipSlot is not (EquipSlot.Hair or EquipSlot.Face);
-            if (!available)
-            {
-                this._suspendEvents = true;
-                this.EquipCashFilter.SelectedIndex = 0;
-                this._suspendEvents = false;
-            }
-
-            this.EquipCashFilter.IsEnabled = available;
-            this.EquipCashFilter.Opacity = available ? 1.0 : 0.45;
-            this.EquipCashFilter.Visibility = available ? Visibility.Visible : Visibility.Collapsed;
-            this.EquipCashFilter.ToolTip = available
-                ? this.FindString("VLoc.Equip.CashFilter")
-                : this.FindString("VLoc.Equip.Filter.All");
         }
 
         private void ReleaseSlotCaches(EquipSlot slot)
@@ -333,13 +311,11 @@ namespace ClassicAvatar
             if (this._data != null)
             {
                 EquipSlot slot = this._equipSlot;
-                bool cashAvailable = slot is not (EquipSlot.Hair or EquipSlot.Face);
-                int mode = cashAvailable ? cashFilter : 0;
-                if (mode == 1)
+                if (cashFilter == 1)
                 {
                     query = query.Where(i => !this.IsCashItem(slot, i.Id));
                 }
-                else if (mode == 2)
+                else if (cashFilter == 2)
                 {
                     query = query.Where(i => this.IsCashItem(slot, i.Id));
                 }
@@ -351,6 +327,8 @@ namespace ClassicAvatar
 
             string unit = this.FindString("VLoc.Common.Items");
             if (this.EquipCount != null) this.EquipCount.Text = $"{result.Count} {unit}";
+
+            this.UpdateEquipEmptyState(result.Count, keyword);
 
             if (equipped is int current)
             {
@@ -367,6 +345,29 @@ namespace ClassicAvatar
                 this.UpdateSelectedBar(null);
             }
             this._suspendEvents = false;
+        }
+
+        /// <summary>Shows a hint instead of a blank list when the current filter yields nothing.</summary>
+        private void UpdateEquipEmptyState(int count, string keyword)
+        {
+            if (this.EquipEmpty == null || this.EquipEmptyText == null) return;
+
+            if (count > 0)
+            {
+                this.EquipEmpty.Visibility = Visibility.Collapsed;
+                return;
+            }
+
+            string key = this.FilterFavorites?.IsChecked == true
+                ? "C2Loc.Equip.EmptyFavorites"
+                : this.FilterRecent?.IsChecked == true
+                    ? "C2Loc.Equip.EmptyRecent"
+                    : !string.IsNullOrEmpty(keyword)
+                        ? "C2Loc.Equip.EmptySearch"
+                        : "C2Loc.Equip.EmptyList";
+
+            this.EquipEmptyText.Text = this.FindString(key);
+            this.EquipEmpty.Visibility = Visibility.Visible;
         }
 
         private void ListEquip_SelectionChanged(object sender, SelectionChangedEventArgs e)

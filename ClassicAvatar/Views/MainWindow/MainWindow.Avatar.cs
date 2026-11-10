@@ -173,13 +173,15 @@ namespace ClassicAvatar
             this.SetSlotSelection(EquipSlot.Face, DefaultFaceIdOf(gender));
 
             // A new preview should look like a dressed starter character rather
-            // than a bare mannequin. Use the classic basic set when available.
+            // than a bare mannequin. Use the classic basic set when available;
+            // female characters get the female top/bottom instead of the male ones.
             if (this._data != null)
             {
+                bool female = gender == Gender.Female;
                 foreach ((EquipSlot slot, int id) in new[]
                 {
-                    (EquipSlot.Coat, 1040000),
-                    (EquipSlot.Pants, 1060000),
+                    (EquipSlot.Coat, female ? 1041000 : 1040000),
+                    (EquipSlot.Pants, female ? 1061000 : 1060000),
                     (EquipSlot.Shoes, 1072000),
                 })
                 {
@@ -491,7 +493,6 @@ namespace ClassicAvatar
             {
                 this.CurrentPartText.Text = this.C2("C2Loc.Part.Current", "当前：") + name;
             }
-            this.UpdateCashFilterForSlot();
         }
 
         private string FindString(string key) => this.TryFindResource(key) as string ?? key;
@@ -539,12 +540,75 @@ namespace ClassicAvatar
             this.PushUndo();
             this._timer.Stop();
             this._suspendEvents = true;
+
+            // MouseLeftButtonDown runs before the radio button toggles itself,
+            // so apply the checked state here; otherwise Rebuild would collect
+            // the old gender while the new hair/face are already selected.
+            this.Male.IsChecked = gender == Gender.Male;
+            this.Female.IsChecked = gender == Gender.Female;
             this.SetSlotSelection(EquipSlot.Hair, DefaultHairIdOf(gender));
             this.SetSlotSelection(EquipSlot.Face, DefaultFaceIdOf(gender));
+            this.ConvertGearForGender(gender);
             this._suspendEvents = false;
             this.Rebuild();
             this._timer.Start();
             this.PlayIcon.Data = (Geometry)this.FindResource("C2Icon.Pause");
+
+            // The radio handlers are muted while switching, so refresh the
+            // equipment browser explicitly for the new gender.
+            this.Dispatcher.BeginInvoke(new Action(this.LoadEquipList), DispatcherPriority.Background);
+        }
+
+        /// <summary>
+        /// Applies the gender switch rules: unisex gear stays on, gender-restricted
+        /// gear is taken off, and the basic coat/pants swap to the matching set.
+        /// </summary>
+        private void ConvertGearForGender(Gender gender)
+        {
+            bool female = gender == Gender.Female;
+            int coatFrom = female ? 1040000 : 1041000;
+            int coatTo = female ? 1041000 : 1040000;
+            int pantsFrom = female ? 1060000 : 1061000;
+            int pantsTo = female ? 1061000 : 1060000;
+
+            foreach (EquipSlot slot in PanelSlots)
+            {
+                // Hair and face are gender-specific by design and already
+                // replaced with the new default above.
+                if (slot is EquipSlot.Hair or EquipSlot.Face) continue;
+                if (!this._slotSelections.TryGetValue(slot, out int? selection) || selection is not int id) continue;
+
+                // The starter top/bottom migrate to the other gender's pair.
+                if (slot == EquipSlot.Coat && id == coatFrom)
+                {
+                    this.SetSlotIfExists(slot, coatTo);
+                    continue;
+                }
+                if (slot == EquipSlot.Pants && id == pantsFrom)
+                {
+                    this.SetSlotIfExists(slot, pantsTo);
+                    continue;
+                }
+
+                // Unisex pieces are shared, everything else comes off.
+                if (this.ItemGenderOf(slot, id) == Gender.Unisex) continue;
+                this.SetSlotSelection(slot, null);
+            }
+        }
+
+        /// <summary>Effective gender of one item, matching the equipment browser filter.</summary>
+        private Gender ItemGenderOf(EquipSlot slot, int itemId)
+        {
+            Gender inferred = ItemDescriptor.InferGender(slot, itemId);
+            if (inferred != Gender.Unisex) return inferred;
+            return this._data?.Catalog.Get(slot, itemId)?.EffectiveGender ?? Gender.Unisex;
+        }
+
+        /// <summary>Selects an item, or clears the slot when the data set lacks it.</summary>
+        private void SetSlotIfExists(EquipSlot slot, int itemId)
+        {
+            bool exists = this._data == null || this._data.Catalog.Get(slot, itemId) != null;
+            this.SetSlotSelection(slot, exists ? itemId : null);
         }
 
         private void ListSkin_SelectionChanged(object sender, SelectionChangedEventArgs e)

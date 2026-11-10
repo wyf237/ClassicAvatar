@@ -68,11 +68,18 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Border Background="{DynamicResource VBrush.Surface2}"
-                        CornerRadius="3" ClipToBounds="True">
-                    <Image Source="{Binding Preview}" Stretch="Uniform" Margin="3"
-                           RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                </Border>
+                <Grid Grid.Row="0">
+                    <Border Background="{DynamicResource VBrush.Surface2}"
+                            CornerRadius="3" ClipToBounds="True">
+                        <Image Source="{Binding Preview}" Stretch="Uniform" Margin="3"
+                               RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                    </Border>
+                    <v:VButton Style="{StaticResource C2.LibraryDeleteButton}"
+                               HorizontalAlignment="Right" VerticalAlignment="Top"
+                               Margin="0,4,4,0"
+                               ToolTip="{DynamicResource C2Loc.Library.Delete}"
+                               Click="BtnLibraryDelete_Click" />
+                </Grid>
                 <TextBlock Grid.Row="1" Text="{Binding Name}" FontSize="11" FontWeight="SemiBold"
                            Margin="1,5,1,0" TextTrimming="CharacterEllipsis"
                            ToolTip="{Binding Name}"
@@ -382,22 +389,8 @@
                                     <TextBox x:Name="EquipSearch" Style="{StaticResource VSearchBox}"
                                              Height="28" FontSize="11.5"
                                              TextChanged="EquipSearch_TextChanged"
+                                             v:VTextBox.Placeholder="{DynamicResource C2Loc.Search.Placeholder}"
                                              ToolTip="{DynamicResource VLoc.Equip.SearchPlaceholder}" />
-                                    <TextBlock Text="{DynamicResource C2Loc.Search.Placeholder}"
-                                               FontSize="10.5" Margin="31,0,8,0"
-                                               VerticalAlignment="Center" IsHitTestVisible="False"
-                                               Foreground="{DynamicResource VBrush.TextMuted}">
-                                        <TextBlock.Style>
-                                            <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Visibility" Value="Collapsed" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Text, ElementName=EquipSearch}" Value="">
-                                                        <Setter Property="Visibility" Value="Visible" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
                                 </Grid>
 
                                 <Grid Grid.Row="3" Margin="11,4,11,0">
@@ -501,6 +494,14 @@
                                         </ListBox.ItemTemplate>
                                     </ListBox>
 
+                                    <StackPanel x:Name="EquipEmpty" Visibility="Collapsed"
+                                                HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                Margin="16,0" IsHitTestVisible="False">
+                                        <TextBlock x:Name="EquipEmptyText" FontSize="11"
+                                                   TextAlignment="Center" TextWrapping="Wrap"
+                                                   Foreground="{DynamicResource VBrush.TextMuted}" />
+                                    </StackPanel>
+
                                     <Grid x:Name="EquipLoading" Visibility="Collapsed"
                                           Background="{DynamicResource VBrush.Surface}" Opacity="0.94">
                                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -543,22 +544,8 @@
                                     <TextBox x:Name="LibrarySearch" Style="{StaticResource VSearchBox}"
                                              Height="28" FontSize="11.5"
                                              TextChanged="LibrarySearch_TextChanged"
+                                             v:VTextBox.Placeholder="{DynamicResource C2Loc.Search.Placeholder}"
                                              ToolTip="{DynamicResource VLoc.Equip.SearchPlaceholder}" />
-                                    <TextBlock Text="{DynamicResource C2Loc.Search.Placeholder}"
-                                               FontSize="10.5" Margin="31,0,8,0"
-                                               VerticalAlignment="Center" IsHitTestVisible="False"
-                                               Foreground="{DynamicResource VBrush.TextMuted}">
-                                        <TextBlock.Style>
-                                            <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Visibility" Value="Collapsed" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Text, ElementName=LibrarySearch}" Value="">
-                                                        <Setter Property="Visibility" Value="Visible" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
                                     <v:VButton Grid.Column="1" Style="{StaticResource C2.Button.Primary}"
                                                Height="28" Margin="6,0,0,0"
                                                Content="{DynamicResource VLoc.Library.New}"
@@ -898,9 +885,9 @@
                                 </StackPanel>
                             </Border>
 
-                            <!-- 1:1 reference card -->
+                            <!-- 1:1 reference card: the 200×140 canvas is shown at native pixel size -->
                             <Border HorizontalAlignment="Right" VerticalAlignment="Top"
-                                    Margin="0,10,10,0" Width="144"
+                                    Margin="0,10,10,0" Width="216"
                                     Background="{DynamicResource VBrush.MiniSurface}"
                                     BorderBrush="{DynamicResource VBrush.Border}" BorderThickness="1"
                                     CornerRadius="{DynamicResource C2.Radius.Card}"
@@ -910,9 +897,10 @@
                                     <TextBlock x:Name="MiniEquipCountText" Text="" FontSize="10"
                                                VerticalAlignment="Center"
                                                Foreground="{DynamicResource VBrush.TextSecondary}" />
-                                    <Border Height="96" Margin="0,6,0,0" CornerRadius="3" ClipToBounds="True"
+                                    <Border Width="200" Height="140" Margin="0,6,0,0"
+                                            CornerRadius="3" ClipToBounds="True"
                                             Background="{DynamicResource VBrush.Surface2}">
-                                        <Image x:Name="MiniPreview" Stretch="Uniform"
+                                        <Image x:Name="MiniPreview" Stretch="None"
                                                HorizontalAlignment="Center" VerticalAlignment="Center"
                                                RenderOptions.BitmapScalingMode="NearestNeighbor" />
                                     </Border>
@@ -1020,7 +1008,7 @@
                                 </StackPanel>
                             </Border>
                             <Border HorizontalAlignment="Right" VerticalAlignment="Top"
-                                    Margin="0,10,10,0" Width="144"
+                                    Margin="0,10,10,0" Width="216"
                                     Background="{DynamicResource VBrush.MiniSurface}"
                                     BorderBrush="{DynamicResource VBrush.Border}" BorderThickness="1"
                                     CornerRadius="{DynamicResource C2.Radius.Card}"
@@ -1028,9 +1016,10 @@
                                 <StackPanel Margin="8,7,8,7">
                                     <TextBlock x:Name="CompareMiniEquipCountText" Text="" FontSize="10"
                                                Foreground="{DynamicResource VBrush.TextSecondary}" />
-                                    <Border Height="96" Margin="0,6,0,0" CornerRadius="3" ClipToBounds="True"
+                                    <Border Width="200" Height="140" Margin="0,6,0,0"
+                                            CornerRadius="3" ClipToBounds="True"
                                             Background="{DynamicResource VBrush.Surface2}">
-                                        <Image x:Name="CompareMini" Stretch="Uniform"
+                                        <Image x:Name="CompareMini" Stretch="None"
                                                HorizontalAlignment="Center" VerticalAlignment="Center"
                                                RenderOptions.BitmapScalingMode="NearestNeighbor" />
                                     </Border>

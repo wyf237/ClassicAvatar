@@ -363,8 +363,37 @@ namespace ClassicAvatar
                     icon));
             }
 
-            OutfitListDialog dialog = new(this.DocName.Text, rows);
+            OutfitListDialog dialog = new(
+                this.DocName.Text,
+                rows,
+                this.MiniPreview.Source,
+                this.RenderOutfitPortrait());
             dialog.ShowDialog(this);
+        }
+
+        /// <summary>
+        /// Tight render of the current outfit used as the large portrait in the
+        /// outfit list dialog. The fixed 200×140 stage canvas is deliberately
+        /// skipped so the character fills more of the available area.
+        /// </summary>
+        private ImageSource? RenderOutfitPortrait()
+        {
+            if (this._data == null) return null;
+            try
+            {
+                CharacterProfile profile = this.CollectProfile();
+                AvatarBuild build = AvatarAssembler.Build(this._data, profile, new AvatarOptions
+                {
+                    Padding = 2,
+                    CollectDebugAnchors = false,
+                });
+                AvatarFrame frame = AvatarRenderer.RenderFrame(build, this.CurrentAction, 0);
+                return ToBitmapSource(frame.Pixels);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>Closes the current tab/window, preserving the unsaved prompt.</summary>

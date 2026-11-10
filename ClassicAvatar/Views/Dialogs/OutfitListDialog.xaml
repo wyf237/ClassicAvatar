@@ -2,7 +2,7 @@
            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
            xmlns:v="clr-namespace:VControls.Controls;assembly=VControls"
-           DialogWidth="340"
+           DialogWidth="560"
            ShowCancelButton="False"
            ShowConfirmButton="False"
            CloseOnScrimClick="True"
@@ -46,19 +46,72 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Border x:Name="ImageRoot" Background="{DynamicResource VBrush.Surface}"
-                BorderBrush="{DynamicResource VBrush.TextMuted}" BorderThickness="1"
-                CornerRadius="0" Padding="14,12,14,12">
-            <StackPanel>
-                <TextBlock Text="{DynamicResource C2Loc.Outfit.Title}" FontSize="16" FontWeight="Bold"
-                           Foreground="{DynamicResource VBrush.TextPrimary}" />
-                <TextBlock x:Name="OutfitTitleText" Text="—" FontSize="11" Margin="0,2,0,8"
-                           TextTrimming="CharacterEllipsis"
-                           Foreground="{DynamicResource VBrush.TextMuted}" />
-                <ItemsControl x:Name="OutfitRows"
-                              ItemTemplate="{StaticResource OutfitDialogRowTemplate}" />
-            </StackPanel>
-        </Border>
+        <!-- Copy target: one framed panel holding the slot list and both previews. -->
+        <Grid x:Name="ContentRoot" Background="{DynamicResource VBrush.Surface}">
+            <Border x:Name="ImageRoot" Background="{DynamicResource VBrush.Surface}"
+                    BorderBrush="{DynamicResource VBrush.TextMuted}" BorderThickness="1"
+                    CornerRadius="0" Padding="14,12,14,12">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+                        <TextBlock Text="{DynamicResource C2Loc.Outfit.Title}" FontSize="16" FontWeight="Bold"
+                                   Foreground="{DynamicResource VBrush.TextPrimary}" />
+                        <TextBlock x:Name="OutfitTitleText" Text="—" FontSize="11" Margin="0,2,0,8"
+                                   TextTrimming="CharacterEllipsis"
+                                   Foreground="{DynamicResource VBrush.TextMuted}" />
+                        <ItemsControl x:Name="OutfitRows"
+                                      ItemTemplate="{StaticResource OutfitDialogRowTemplate}" />
+                    </StackPanel>
+
+                    <Grid Grid.Column="1" Width="216" Margin="12,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Current outfit preview, pinned to the panel's top-right corner. -->
+                        <Border x:Name="PreviewFrame" VerticalAlignment="Top"
+                                Background="{DynamicResource VBrush.Surface2}"
+                                BorderBrush="{DynamicResource VBrush.Border}" BorderThickness="1"
+                                CornerRadius="{DynamicResource C2.Radius.Card}" Padding="7">
+                            <StackPanel>
+                                <TextBlock Text="{DynamicResource C2Loc.Outfit.Preview}" FontSize="10"
+                                           Foreground="{DynamicResource VBrush.TextSecondary}" />
+                                <Border Width="200" Height="140" Margin="0,5,0,0"
+                                        Background="{DynamicResource VBrush.Surface}"
+                                        CornerRadius="3" ClipToBounds="True">
+                                    <Image x:Name="OutfitPreview" Stretch="None"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Large character-only portrait filling the panel down to the list bottom. -->
+                        <Border x:Name="PortraitFrame" Grid.Row="1" Margin="0,8,0,0"
+                                Background="{DynamicResource VBrush.Surface2}"
+                                BorderBrush="{DynamicResource VBrush.Border}" BorderThickness="1"
+                                CornerRadius="{DynamicResource C2.Radius.Card}" Padding="7">
+                            <StackPanel>
+                                <TextBlock Text="{DynamicResource C2Loc.Outfit.Portrait}" FontSize="10"
+                                           Foreground="{DynamicResource VBrush.TextSecondary}" />
+                                <Border Margin="0,5,0,0" MinHeight="120"
+                                        Background="{DynamicResource VBrush.Surface}"
+                                        CornerRadius="3" ClipToBounds="True">
+                                    <Image x:Name="OutfitPortrait" Stretch="Uniform" Margin="4"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
 
         <StackPanel Grid.Row="1" Margin="0,12,0,0">
             <TextBlock x:Name="FeedbackText" FontSize="10.5" Height="14"

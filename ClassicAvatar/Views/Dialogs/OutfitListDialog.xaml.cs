@@ -17,7 +17,11 @@ namespace ClassicAvatar
         private readonly string _outfitName;
         private readonly IReadOnlyList<OutfitRowVm> _rows;
 
-        public OutfitListDialog(string outfitName, IReadOnlyList<OutfitRowVm> rows)
+        public OutfitListDialog(
+            string outfitName,
+            IReadOnlyList<OutfitRowVm> rows,
+            ImageSource? preview = null,
+            ImageSource? portrait = null)
         {
             this.InitializeComponent();
 
@@ -28,6 +32,24 @@ namespace ClassicAvatar
 
             this.OutfitTitleText.Text = this._outfitName;
             this.OutfitRows.ItemsSource = rows;
+
+            if (preview != null)
+            {
+                this.OutfitPreview.Source = preview;
+            }
+            else
+            {
+                this.PreviewFrame.Visibility = Visibility.Collapsed;
+            }
+
+            if (portrait != null)
+            {
+                this.OutfitPortrait.Source = portrait;
+            }
+            else
+            {
+                this.PortraitFrame.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void BtnCopyText_Click(object sender, RoutedEventArgs e)
@@ -44,17 +66,18 @@ namespace ClassicAvatar
 
         private void BtnCopyImage_Click(object sender, RoutedEventArgs e)
         {
-            this.ImageRoot.UpdateLayout();
+            // Capture the whole content area: the slot list and both previews.
+            this.ContentRoot.UpdateLayout();
 
-            int width = (int)Math.Ceiling(this.ImageRoot.ActualWidth);
-            int height = (int)Math.Ceiling(this.ImageRoot.ActualHeight);
+            int width = (int)Math.Ceiling(this.ContentRoot.ActualWidth);
+            int height = (int)Math.Ceiling(this.ContentRoot.ActualHeight);
             if (width <= 0 || height <= 0)
             {
                 return;
             }
 
             RenderTargetBitmap bitmap = new(width, height, 96, 96, PixelFormats.Pbgra32);
-            bitmap.Render(this.ImageRoot);
+            bitmap.Render(this.ContentRoot);
             this.Copy(() => Clipboard.SetImage(bitmap));
         }
 

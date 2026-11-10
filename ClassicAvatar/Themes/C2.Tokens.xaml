@@ -37,6 +37,11 @@
     <SolidColorBrush x:Key="C2.Brand.Sage" Color="#3F7D62" />
     <SolidColorBrush x:Key="C2.Brand.Coral" Color="#C25562" />
 
+    <!-- Library card delete glyph: soft red → red → deep red. -->
+    <SolidColorBrush x:Key="C2.Brush.DeleteSoft" Color="#E3A0A0" />
+    <SolidColorBrush x:Key="C2.Brush.DeleteHover" Color="#DC4B4B" />
+    <SolidColorBrush x:Key="C2.Brush.DeletePressed" Color="#9B2B2B" />
+
     <!--
         Play / pause glyphs taken from an iconfont symbol set (1024 grid,
         single filled path) so the transport matches the supplied equipment
